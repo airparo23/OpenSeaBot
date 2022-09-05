@@ -1,21 +1,11 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.Text.RegularExpressions;
-using System.Collections.ObjectModel;
- 
 
 namespace OpenSeaBot
 {
     public class Main
     {
-
-        [SetUp]
-        public void Setup()
-        {
-
-            
-        }
-
         [Test]
         public void Test1()
         {
@@ -50,7 +40,7 @@ namespace OpenSeaBot
             {
                 MainPageMethods.GetInNft(webDriver, MainPageElements.spellfireNftToBeClicked);
 
-                MainPageMethods.IsNftAlreadyForSale(webDriver, MainPageElements.isSellButtonVisible);
+                MainPageMethods.IsNftAlreadyForSale(webDriver);
                 //ако не е пуснато за продажба, го пускаме за продажба 
                 if (MainPageElements.isSellButtonVisible)
                 {
