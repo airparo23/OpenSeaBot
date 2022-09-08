@@ -42,7 +42,7 @@ namespace OpenSeaBot
         {
             WaitForAnElementToShow(webDriver, MainPageElements.word1);
 
-            string[] pass = { "" };
+            string[] pass = { "orient", "barrel", "educate", "depend", "city", "tag", "rude", "stone", "vote", "hint", "tool", "surprise" };
             By[] passFields = { word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12 };
             int i = 0;
             int j = 0;
@@ -338,7 +338,7 @@ namespace OpenSeaBot
 
         public static void SaveSevenDayAverageSellNumber(WebDriver webDriver, double PercentageOverAvgPrice)
         {
-            if(MainPageElements.TimerAvgPrice == 100)
+            if(MainPageElements.TimerAvgPrice >= 100)
             {
                 webDriver.FindElement(MainPageElements.activity).Click();
                 Thread.Sleep(2000);

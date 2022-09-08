@@ -92,6 +92,6 @@ namespace OpenSeaBot
         public static By Items = By.XPath("//span[text()='Items']");
         public static double SevenDaysAveragePriceNumberPercentage;
         public static double MaxAvgPrice;
-        public static double TimerAvgPrice;
+        public static double TimerAvgPrice = 10;
     }
 }
