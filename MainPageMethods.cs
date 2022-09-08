@@ -106,7 +106,7 @@ namespace OpenSeaBot
 
         }
 
-        public static void GetInNft(WebDriver driver, By Nft)
+        public static void GoIntoNft(WebDriver driver, By Nft)
         {
             List<IWebElement> NftsBoughtList = new List<IWebElement>();
             NftsBoughtList.AddRange(driver.FindElements(Nft));
@@ -164,7 +164,8 @@ namespace OpenSeaBot
         public static void TypeMyOfferNumber(WebDriver webDriver, string myOfferNumber)
         {
             webDriver.FindElement(MainPageElements.amountField).SendKeys(myOfferNumber);
-            webDriver.FindElement(MainPageElements.offerPeriodDownArrow).Click();
+            var offerPeriodDownArrowList = webDriver.FindElements(MainPageElements.offerPeriodDownArrow);
+            offerPeriodDownArrowList[2].Click();
             Thread.Sleep(1000);
             webDriver.FindElement(MainPageElements.offerPeriodTwelveHours).Click();
         }
@@ -220,7 +221,7 @@ namespace OpenSeaBot
 
         }
 
-        public static void GetFloorNumber(WebDriver webDriver)
+        public static void SaveFloorNumber(WebDriver webDriver)
         {
             MainPageElements.floorPrice = webDriver.FindElement(By.XPath("//p[contains(normalize-space(text()), 'Floor price')]")).Text;
             MainPageElements.pattern = @"\d{1,}.\d{1,}";
@@ -230,12 +231,12 @@ namespace OpenSeaBot
             MainPageElements.floorNumber = double.Parse(MainPageElements.floorNumberValue);
         }
 
-        public static void GetMySellNumber()
+        public static void CalculateMySellNumber()
         {
             MainPageElements.mySellNumber = MainPageElements.floorNumber - 0.01;
         }
 
-        public static void GetmySellNumberWhenAlreadyNftForSale(WebDriver webDriver)
+        public static void CalculatemySellNumberWhenAlreadyNftForSale(WebDriver webDriver)
         {
             Thread.Sleep(3000);
             string mySellNumberWhenAlreadyNftForSale = webDriver.FindElement(By.XPath("//div[@class='sc-1a9c68u-0 jdhmum Price--main TradeStation--price']")).Text;
@@ -246,7 +247,7 @@ namespace OpenSeaBot
             MainPageElements.mySellNumberWhenAlreadyNftForSaleNumber = double.Parse(MainPageElements.mySellNumberWhenAlreadyNftForSaleValue);
         }
 
-        public static void GetBestOfferNumber(WebDriver webDriver)
+        public static void SaveBestOfferNumber(WebDriver webDriver)
         {
             MainPageElements.bestOffer = webDriver.FindElement(By.XPath("//span[text() = 'WETH']/..")).Text;
             MainPageElements.pattern = @"\d{1,}.\d{1,}";
@@ -333,6 +334,41 @@ namespace OpenSeaBot
                 Thread.Sleep(3000);
                 SetLowerPrice(webDriver);
             }
+        }
+
+        public static void SaveSevenDayAverageSellNumber(WebDriver webDriver, double PercentageOverAvgPrice)
+        {
+            if(MainPageElements.TimerAvgPrice == 100)
+            {
+                webDriver.FindElement(MainPageElements.activity).Click();
+                Thread.Sleep(2000);
+                webDriver.FindElement(MainPageElements.arrowDownTimePeriod).Click();
+                webDriver.FindElement(MainPageElements.lastSevenDaysPeriod).Click();
+                Thread.Sleep(2000);
+                SaveSevenDaysAveragePrice(webDriver);
+                double PercentageOverAvgPriceInNumber = PercentageOverAvgPrice / 100;
+                double Percentage = MainPageElements.SevenDaysAveragePriceNumber * PercentageOverAvgPriceInNumber;
+                MainPageElements.MaxAvgPrice = MainPageElements.SevenDaysAveragePriceNumber + Percentage;
+                webDriver.FindElement(MainPageElements.Items).Click();
+                MainPageElements.TimerAvgPrice = 0;
+            }
+            
+        }
+
+        public static void SaveSevenDaysAveragePrice(WebDriver webDriver)
+        {
+            var saveSevenDaysAveragePriceList = webDriver.FindElements(MainPageElements.SevenDaysAveragePrice);
+            MainPageElements.SevenDaysAveragePriceString = saveSevenDaysAveragePriceList[0].Text;
+            MainPageElements.pattern = @"\d{1,}.\d{1,}";
+            Match SevenDaysAveragePriceStringAfterRegex = Regex.Match(MainPageElements.SevenDaysAveragePriceString, MainPageElements.pattern);
+            MainPageElements.SevenDaysAveragePriceStringAfterRegexValue = SevenDaysAveragePriceStringAfterRegex.Value;
+            MainPageElements.SevenDaysAveragePriceNumber = double.Parse(MainPageElements.SevenDaysAveragePriceStringAfterRegexValue);
+        }
+
+        public static void TimerAvgPrice()
+        {
+            //ако колекциите се въртят през 5 мин - MainPageElements.TimerAvgPrice == 100, ако се въртят през 10 мин - MainPageElements.TimerAvgPrice == 50
+            MainPageElements.TimerAvgPrice = MainPageElements.TimerAvgPrice + 1;
         }
 
         public static System.Timers.Timer Set(System.Action action, int interval)

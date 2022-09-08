@@ -42,13 +42,14 @@ namespace OpenSeaBot
             //MainPageMethods.Set(, 3000); - тук трябва да е метода за интервал, който се опитах да направя, но не можах. има го в Methods, последният метод е там. в него се вкарват колекциите, които
             // да се въртят на определено време
 
+            //от тук да сложа един Try/Catch за всяка колекция, че ако нещо се преебе някъде, да не спира всичко, а да продължава със следващата колекция
+            try { 
             MainPageMethods.IsNftBought(webDriver, MainPageElements.spellfireNFT);
-
+            MainPageMethods.TimerAvgPrice();
             //ако имаме NFT, влизаме в него и проверяваме дали вече е пуснато за продажба или не
-
             if (MainPageElements.isVisible) 
             {
-                MainPageMethods.GetInNft(webDriver, MainPageElements.spellfireNftToBeClicked);
+                MainPageMethods.GoIntoNft(webDriver, MainPageElements.spellfireNftToBeClicked);
 
                 MainPageMethods.IsNftAlreadyForSale(webDriver, MainPageElements.isSellButtonVisible);
                 //ако не е пуснато за продажба, го пускаме за продажба 
@@ -60,10 +61,10 @@ namespace OpenSeaBot
                     MainPageMethods.IsCollectionUnreviewed(webDriver);
                     MainPageMethods.CheckBoxIfUnreviewedCollection(webDriver);
                     Thread.Sleep(3000);
-                    MainPageMethods.GetFloorNumber(webDriver);
-                    MainPageMethods.GetMySellNumber();
+                    MainPageMethods.SaveFloorNumber(webDriver);
+                    MainPageMethods.CalculateMySellNumber();
                     MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
-                    MainPageMethods.GetInNft(webDriver, MainPageElements.spellfireNftToBeClicked);
+                    MainPageMethods.GoIntoNft(webDriver, MainPageElements.spellfireNftToBeClicked);
                     MainPageMethods.ClickSellButton(webDriver);
                     MainPageMethods.TypeMySellNumberAndCompleteListing(webDriver);
                     webDriver.SwitchTo().Window(webDriver.WindowHandles[2]);
@@ -78,10 +79,10 @@ namespace OpenSeaBot
                     MainPageMethods.IsCollectionUnreviewed(webDriver);
                     MainPageMethods.CheckBoxIfUnreviewedCollection(webDriver);
                     Thread.Sleep(3000);               
-                    MainPageMethods.GetFloorNumber(webDriver);
+                    MainPageMethods.SaveFloorNumber(webDriver);
                     MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
-                    MainPageMethods.GetInNft(webDriver, MainPageElements.spellfireNftToBeClicked);
-                    MainPageMethods.GetmySellNumberWhenAlreadyNftForSale(webDriver);
+                    MainPageMethods.GoIntoNft(webDriver, MainPageElements.spellfireNftToBeClicked);
+                    MainPageMethods.CalculatemySellNumberWhenAlreadyNftForSale(webDriver);
                     MainPageMethods.SetLowerPriceForSaleIfNeeded(webDriver);
                 }
                 // от тук трябва да отидем в профил и да търсим следващото НФТ дали го имаме
@@ -90,18 +91,19 @@ namespace OpenSeaBot
             {
                 //започваме да пускаме оферта, като първо проверяваме колко е числото на Best offer-а
                 MainPageMethods.GoToCollection(webDriver, MainPageElements.ethlizardCollection);
+                MainPageMethods.SaveSevenDayAverageSellNumber(webDriver, 8); 
                 MainPageMethods.ClickCollectionOfferButton(webDriver);
                 Thread.Sleep(4000);
-                MainPageMethods.GetFloorNumber(webDriver);
-                MainPageMethods.GetBestOfferNumber(webDriver);
+                MainPageMethods.SaveFloorNumber(webDriver);
+                MainPageMethods.SaveBestOfferNumber(webDriver);
 
                 if (MainPageElements.bestOfferNumber > MainPageElements.myPreviousOfferNumber) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
                 {
                     //проверявам дали Best offer-а е с поне 15% по - ниска от Floor price-а
-                    if ((MainPageElements.bestOfferNumber / MainPageElements.floorNumber) * 100 < 85)
+                    if ((MainPageElements.bestOfferNumber / MainPageElements.floorNumber) * 100 < 85 && MainPageElements.MaxAvgPrice > MainPageElements.floorNumber)
                     {
                         //продължавам с пускането на офертата
-                        MainPageMethods.CalculateMyOfferNumber(webDriver, 10, 5);
+                        MainPageMethods.CalculateMyOfferNumber(webDriver, 10, 10);
                         MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElements.myOfferNumberString);
                         MainPageMethods.CheckIfWethIsEnough(webDriver);
                         MainPageMethods.SwapWethForEthIfNeeded(webDriver);
@@ -111,6 +113,8 @@ namespace OpenSeaBot
                 }
                 
             }
+
+            } catch { Console.WriteLine("Нещо се счупи!"); }
 
         }
     }

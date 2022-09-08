@@ -66,8 +66,8 @@ namespace OpenSeaBot
         public static By sellPriceField = By.XPath("//input[@id='price']");
         public static By completeListingButton = By.XPath("//button[text()='Complete listing']");
         public static By ethlizardNftToBeClicked = By.XPath("//div[contains(normalize-space(text()), 'Ethlizards #')]");
-        public static By notEnoughWethMessage = By.XPath("//span[@class='sc-1xf18x6-0 sc-1aqfqq9-0 sc-13us3ky-0 jUxJqB ehcRoB fwzwmC']");
-        public static By addWethButton = By.XPath("//button[@class='sc-1xf18x6-0 sc-glfma3-0 jPlHEK ldKPky']");
+        public static By notEnoughWethMessage = By.CssSelector("div[aria-modal=true] span[role=status]");
+        public static By addWethButton = By.XPath("//button[text()='Add WETH']");
         public static By wrapEthButton = By.XPath("//div[@class='type__TextWrapper-sc-16386l-0 type__TransitionTextWrapper-sc-16386l-1 iLOGtN krBtbX button button-large css-oldlf1']");
         public static By confirmButtonMetamask = By.XPath("//button[@class='button btn--rounded btn-primary page-container__footer-button']");
         public static By lowerPriceButton = By.XPath("//button[text()='Lower price']");
@@ -79,9 +79,19 @@ namespace OpenSeaBot
         public static string bestOfferNumberValue;
         public static double myOfferNumber;
         public static bool isUnreviewedCollection;
-        public static By offerPeriodDownArrow = By.XPath("//div[@class='sc-1xf18x6-0 ttmcH']//i[@class='sc-1gugx8q-0 dKJrxr material-icons']");
+        public static By offerPeriodDownArrow = By.XPath("//i[text()='keyboard_arrow_down']");
         public static By offerPeriodTwelveHours = By.XPath("//div[@class='tippy-content']//span[text()='12 hours']");
         public static double maxOfferNumber;
-
+        public static By activity = By.XPath("//span[text()='Activity']");
+        public static By lastSevenDaysPeriod = By.CssSelector("div[data-tippy-root] li:first-of-type button");
+        public static By arrowDownTimePeriod = By.CssSelector(".fresnel-container.fresnel-greaterThanOrEqual-lg div[cursor='pointer']");
+        public static By SevenDaysAveragePrice = By.CssSelector(".PriceHistory--interface > div p:first-of-type");
+        public static string SevenDaysAveragePriceString;
+        public static string SevenDaysAveragePriceStringAfterRegexValue;
+        public static double SevenDaysAveragePriceNumber;
+        public static By Items = By.XPath("//span[text()='Items']");
+        public static double SevenDaysAveragePriceNumberPercentage;
+        public static double MaxAvgPrice;
+        public static double TimerAvgPrice;
     }
 }
