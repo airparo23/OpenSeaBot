@@ -338,7 +338,7 @@ namespace OpenSeaBot
 
         public static void SaveSevenDayAverageSellNumber(WebDriver webDriver, double PercentageOverAvgPrice)
         {
-            if(MainPageElements.TimerAvgPrice >= 100)
+            if(MainPageElements.timerAvgPrice >= 100)
             {
                 webDriver.FindElement(MainPageElements.activity).Click();
                 Thread.Sleep(2000);
@@ -347,10 +347,10 @@ namespace OpenSeaBot
                 Thread.Sleep(2000);
                 SaveSevenDaysAveragePrice(webDriver);
                 double PercentageOverAvgPriceInNumber = PercentageOverAvgPrice / 100;
-                double Percentage = MainPageElements.SevenDaysAveragePriceNumber * PercentageOverAvgPriceInNumber;
-                MainPageElements.MaxAvgPrice = MainPageElements.SevenDaysAveragePriceNumber + Percentage;
-                webDriver.FindElement(MainPageElements.Items).Click();
-                MainPageElements.TimerAvgPrice = 0;
+                double Percentage = MainPageElements.sevenDaysAveragePriceNumber * PercentageOverAvgPriceInNumber;
+                MainPageElements.maxAvgPrice = MainPageElements.sevenDaysAveragePriceNumber + Percentage;
+                webDriver.FindElement(MainPageElements.items).Click();
+                MainPageElements.timerAvgPrice = 0;
             }
             
         }
@@ -358,17 +358,48 @@ namespace OpenSeaBot
         public static void SaveSevenDaysAveragePrice(WebDriver webDriver)
         {
             var saveSevenDaysAveragePriceList = webDriver.FindElements(MainPageElements.SevenDaysAveragePrice);
-            MainPageElements.SevenDaysAveragePriceString = saveSevenDaysAveragePriceList[0].Text;
+            MainPageElements.sevenDaysAveragePriceString = saveSevenDaysAveragePriceList[0].Text;
             MainPageElements.pattern = @"\d{1,}.\d{1,}";
-            Match SevenDaysAveragePriceStringAfterRegex = Regex.Match(MainPageElements.SevenDaysAveragePriceString, MainPageElements.pattern);
-            MainPageElements.SevenDaysAveragePriceStringAfterRegexValue = SevenDaysAveragePriceStringAfterRegex.Value;
-            MainPageElements.SevenDaysAveragePriceNumber = double.Parse(MainPageElements.SevenDaysAveragePriceStringAfterRegexValue);
+            Match SevenDaysAveragePriceStringAfterRegex = Regex.Match(MainPageElements.sevenDaysAveragePriceString, MainPageElements.pattern);
+            MainPageElements.sevenDaysAveragePriceStringAfterRegexValue = SevenDaysAveragePriceStringAfterRegex.Value;
+            MainPageElements.sevenDaysAveragePriceNumber = double.Parse(MainPageElements.sevenDaysAveragePriceStringAfterRegexValue);
         }
 
         public static void TimerAvgPrice()
         {
             //ако колекциите се въртят през 5 мин - MainPageElements.TimerAvgPrice == 100, ако се въртят през 10 мин - MainPageElements.TimerAvgPrice == 50
-            MainPageElements.TimerAvgPrice = MainPageElements.TimerAvgPrice + 1;
+            MainPageElements.timerAvgPrice = MainPageElements.timerAvgPrice + 1;
+        }
+
+        public static void BuyFloorIfCheap(WebDriver webDriver, string collection, double fees, double profit)
+        {
+            ClickCollectionOfferButton(webDriver);
+            Thread.Sleep(4000);
+            SaveFloorNumber(webDriver);
+            webDriver.FindElement(MainPageElements.closeWindowElement).Click();
+            WaitForAnElementToShow(webDriver, MainPageElements.activity);
+            webDriver.FindElement(MainPageElements.activity).Click();
+            Thread.Sleep(2000);
+            webDriver.FindElement(MainPageElements.arrowDownTimePeriod).Click();
+            webDriver.FindElement(MainPageElements.lastSevenDaysPeriod).Click();
+            Thread.Sleep(2000);
+            SaveSevenDaysAveragePrice(webDriver);
+            webDriver.FindElement(MainPageElements.items).Click();
+            double feesPlusProfit = fees + profit;
+            if((MainPageElements.floorNumber / MainPageElements.sevenDaysAveragePriceNumber) * 100 < 100 - feesPlusProfit) 
+            {
+                var floorNftsList = webDriver.FindElements(By.XPath(String.Format(MainPageElements.floorNftsLocator, MainPageElements.floorNumber)));
+                Thread.Sleep(6000);
+                floorNftsList[1].Click();
+                WaitForAnElementToShow(webDriver, MainPageElements.buyNowButton);
+                webDriver.FindElement(MainPageElements.buyNowButton).Click();
+                WaitForAnElementToShow(webDriver, MainPageElements.completePurchaseButton);
+                webDriver.FindElement(MainPageElements.completePurchaseButton).Click();
+                Thread.Sleep(6000);
+                webDriver.SwitchTo().Window(webDriver.WindowHandles[2]);
+                webDriver.FindElement(MainPageElements.confirmMetamaskButton).Click();
+                webDriver.SwitchTo().Window(webDriver.WindowHandles[1]);
+            }
         }
 
         public static System.Timers.Timer Set(System.Action action, int interval)

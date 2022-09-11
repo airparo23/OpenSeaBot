@@ -86,12 +86,16 @@ namespace OpenSeaBot
         public static By lastSevenDaysPeriod = By.CssSelector("div[data-tippy-root] li:first-of-type button");
         public static By arrowDownTimePeriod = By.CssSelector(".fresnel-container.fresnel-greaterThanOrEqual-lg div[cursor='pointer']");
         public static By SevenDaysAveragePrice = By.CssSelector(".PriceHistory--interface > div p:first-of-type");
-        public static string SevenDaysAveragePriceString;
-        public static string SevenDaysAveragePriceStringAfterRegexValue;
-        public static double SevenDaysAveragePriceNumber;
-        public static By Items = By.XPath("//span[text()='Items']");
-        public static double SevenDaysAveragePriceNumberPercentage;
-        public static double MaxAvgPrice;
-        public static double TimerAvgPrice = 10;
+        public static string sevenDaysAveragePriceString;
+        public static string sevenDaysAveragePriceStringAfterRegexValue;
+        public static double sevenDaysAveragePriceNumber;
+        public static By items = By.XPath("//span[text()='Items']");
+        public static double sevenDaysAveragePriceNumberPercentage;
+        public static double maxAvgPrice;
+        public static double timerAvgPrice = 10;
+        public static By closeWindowElement = By.XPath("//i[text()='close']");
+        public static string floorNftsLocator = $"//div[text()='{{0}}']";
+        public static By buyNowButton = By.CssSelector("div[pointer-events='none'] i[value='account_balance_wallet']");
+        public static By completePurchaseButton = By.XPath("//span[text()='Complete purchase']");
     }
 }

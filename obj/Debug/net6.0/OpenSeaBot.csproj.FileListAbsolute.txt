@@ -11,6 +11,7 @@ C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\OpenSeaBot.deps.json
 C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\OpenSeaBot.runtimeconfig.json
 C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\OpenSeaBot.dll
 C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\OpenSeaBot.pdb
+C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\SeleniumExtras.WaitHelpers.dll
 C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\Microsoft.TestPlatform.CoreUtilities.dll
 C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
@@ -98,4 +99,3 @@ C:\Users\aspar\source\repos\OpenSeaBot\obj\Debug\net6.0\refint\OpenSeaBot.dll
 C:\Users\aspar\source\repos\OpenSeaBot\obj\Debug\net6.0\OpenSeaBot.pdb
 C:\Users\aspar\source\repos\OpenSeaBot\obj\Debug\net6.0\OpenSeaBot.genruntimeconfig.cache
 C:\Users\aspar\source\repos\OpenSeaBot\obj\Debug\net6.0\ref\OpenSeaBot.dll
-C:\Users\aspar\source\repos\OpenSeaBot\bin\Debug\net6.0\SeleniumExtras.WaitHelpers.dll
