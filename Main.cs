@@ -37,10 +37,11 @@ namespace OpenSeaBot
             webDriver.SwitchTo().Window(webDriver.WindowHandles[1]);
 
 
-            while (true)
+            while(true)
             {
-                Spellfire.SpellfireCollection(webDriver);
-                //друга колекция
+                Spellfire.SpellfireCollection(webDriver, MainPageElements.ethlizardNFT, MainPageElements.spellfireNftToBeClicked, 
+                    MainPageElements.spellfireCollection, MainPageElements.SpellFireCollectionName, 7.5, 8);
+                //следващата колекция
                 Thread.Sleep(300000); // 5 минути
             }
 

@@ -9,24 +9,24 @@ namespace OpenSeaBot.Collections
 {
     internal static class Spellfire
     {
-       public static void SpellfireCollection(WebDriver webDriver)
+       public static void SpellfireCollection(WebDriver webDriver, By Nft, By NftToBeClicked, string NftCollection, string CollectionName, double fees, double profit)
         {
             try
             {
-                MainPageMethods.IsNftBought(webDriver, MainPageElements.ethlizardNFT);
+                MainPageMethods.IsNftBought(webDriver, Nft);
                 MainPageMethods.TimerAvgPrice();
                 //ако имаме NFT, влизаме в него и проверяваме дали вече е пуснато за продажба или не
                 if (MainPageElements.isVisible)
                 {
-                    MainPageMethods.GoIntoNft(webDriver, MainPageElements.spellfireNftToBeClicked);
+                    MainPageMethods.GoIntoNft(webDriver, NftToBeClicked);
 
                     MainPageMethods.IsNftAlreadyForSale(webDriver, MainPageElements.isSellButtonVisible);
                     //ако не е пуснато за продажба, го пускаме за продажба 
                     if (MainPageElements.isSellButtonVisible)
                     {
                         MainPageMethods.ClickCollectionLink(webDriver);
-                        MainPageMethods.BuyFloorIfCheap(webDriver, MainPageElements.spellfireCollection, 7.5, 8);
-                        MainPageMethods.GoToCollection(webDriver, MainPageElements.spellfireCollection);
+                        MainPageMethods.BuyFloorIfCheap(webDriver, NftCollection, fees, profit);
+                        MainPageMethods.GoToCollection(webDriver, NftCollection);
                         MainPageMethods.ClickCollectionOfferButton(webDriver);
                         Thread.Sleep(3000);
                         MainPageMethods.IsCollectionUnreviewed(webDriver);
@@ -35,7 +35,7 @@ namespace OpenSeaBot.Collections
                         MainPageMethods.SaveFloorNumber(webDriver);
                         MainPageMethods.CalculateMySellNumber();
                         MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
-                        MainPageMethods.GoIntoNft(webDriver, MainPageElements.spellfireNftToBeClicked);
+                        MainPageMethods.GoIntoNft(webDriver, NftToBeClicked);
                         MainPageMethods.ClickSellButton(webDriver);
                         MainPageMethods.TypeMySellNumberAndCompleteListing(webDriver);
                         webDriver.SwitchTo().Window(webDriver.WindowHandles[2]);
@@ -45,9 +45,9 @@ namespace OpenSeaBot.Collections
                     else
                     {
                         // ако е пуснато за продажба
-                        MainPageMethods.GoToCollection(webDriver, MainPageElements.spellfireCollection);
-                        MainPageMethods.BuyFloorIfCheap(webDriver, MainPageElements.spellfireCollection, 7.5, 8);
-                        MainPageMethods.GoToCollection(webDriver, MainPageElements.spellfireCollection);
+                        MainPageMethods.GoToCollection(webDriver, NftCollection);
+                        MainPageMethods.BuyFloorIfCheap(webDriver, NftCollection, fees, profit);
+                        MainPageMethods.GoToCollection(webDriver, NftCollection);
                         MainPageMethods.ClickCollectionOfferButton(webDriver);
                         Thread.Sleep(3000);
                         MainPageMethods.IsCollectionUnreviewed(webDriver);
@@ -55,7 +55,7 @@ namespace OpenSeaBot.Collections
                         Thread.Sleep(3000);
                         MainPageMethods.SaveFloorNumber(webDriver);
                         MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
-                        MainPageMethods.GoIntoNft(webDriver, MainPageElements.spellfireNftToBeClicked);
+                        MainPageMethods.GoIntoNft(webDriver, NftToBeClicked);
                         MainPageMethods.CalculatemySellNumberWhenAlreadyNftForSale(webDriver);
                         MainPageMethods.SetLowerPriceForSaleIfNeeded(webDriver);
                     }
@@ -64,10 +64,10 @@ namespace OpenSeaBot.Collections
                 else
                 {
                     //започваме да пускаме оферта, като първо проверяваме колко е числото на Best offer-а
-                    MainPageMethods.GoToCollection(webDriver, MainPageElements.ethlizardCollection);
-                    MainPageMethods.BuyFloorIfCheap(webDriver, MainPageElements.ethlizardCollection, 7.5, 8);
-                    MainPageMethods.GoToCollection(webDriver, MainPageElements.ethlizardCollection);
-                    MainPageMethods.SaveSevenDayAverageSellNumber(webDriver, 8);
+                    MainPageMethods.GoToCollection(webDriver, NftCollection);
+                    MainPageMethods.BuyFloorIfCheap(webDriver, NftCollection, fees, profit);
+                    MainPageMethods.GoToCollection(webDriver, NftCollection);
+                    MainPageMethods.SaveSevenDayAverageSellNumber(webDriver, profit);
                     MainPageMethods.ClickCollectionOfferButton(webDriver);
                     Thread.Sleep(4000);
                     MainPageMethods.SaveFloorNumber(webDriver);
@@ -79,7 +79,7 @@ namespace OpenSeaBot.Collections
                         if ((MainPageElements.bestOfferNumber / MainPageElements.floorNumber) * 100 < 85 && MainPageElements.maxAvgPrice > MainPageElements.floorNumber)
                         {
                             //продължавам с пускането на офертата
-                            MainPageMethods.CalculateMyOfferNumber(webDriver, 10, 10);
+                            MainPageMethods.CalculateMyOfferNumber(webDriver, fees, profit + 2);
                             MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElements.myOfferNumberString);
                             MainPageMethods.CheckIfWethIsEnough(webDriver);
                             MainPageMethods.SwapWethForEthIfNeeded(webDriver); //тук някъде да променя затварянето на прозореца
@@ -91,7 +91,9 @@ namespace OpenSeaBot.Collections
                 }
 
             }
-            catch { Console.WriteLine("Нещо се счупи!"); }
+            catch {
+                MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
+                TestContext.Progress.WriteLine("Нещо се счупи в {0} в {1}!", CollectionName, DateTime.Now); }
 
         }
     }

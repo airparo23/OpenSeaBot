@@ -97,5 +97,6 @@ namespace OpenSeaBot
         public static string floorNftsLocator = $"//div[text()='{{0}}']";
         public static By buyNowButton = By.CssSelector("div[pointer-events='none'] i[value='account_balance_wallet']");
         public static By completePurchaseButton = By.XPath("//span[text()='Complete purchase']");
+        public static string SpellFireCollectionName = "SpellFire";
     }
 }
