@@ -6,29 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Support.UI;
 
-namespace OpenSeaBot
+namespace OpenSeaBot.ElementsAndVariables
 {
-    
-    internal static class MainPageElements 
+
+    internal static class MainPageElements
     {
         public static string myAccountUrl = "https://opensea.io/account";
-        public static string floorPrice;
-        public static string bestOffer;
-        public static string pattern;
-        public static string floorNumberValue;
-        public static double floorNumber;
-        public static double mySellNumber;
-        public static string mySellNumberWhenAlreadyNftForSaleValue;
-        public static double mySellNumberWhenAlreadyNftForSaleNumber;
-        public static double myPreviousOfferNumber = 0;
-        public static string ethlizardCollection = "https://opensea.io/collection/ethlizards";
-        public static string spellfireCollection = "https://opensea.io/collection/spellfire";
-        public static bool isVisible;
-        public static bool isSellButtonVisible;
         public static string extensionPath = "C:/Users/aspar/AppData/Local/Google/Chrome/User Data/Default/Extensions/nkbihfbeogaeaoehlefnkodbefgpgknn/10.17.0_0.crx";
-        public static double bestOfferNumber;
-        public static string myOfferNumberString;
-        public static bool isNotEnoughWeth;
         public static By makeCollectionOfferButton = By.XPath("//span[text()='Make collection offer']");
         public static By getStarted = By.XPath("//button[text()='Get Started']");
         public static By importWallet = By.XPath("//button[text()='Import wallet']");
@@ -58,14 +42,10 @@ namespace OpenSeaBot
         public static By confirmMetamaskButton = By.XPath("//button[text()='Confirm']");
         public static By signMetamaskButton = By.XPath("//button[text()='Sign']");
         public static By downArrowMetamask = By.XPath("//i[@title='Scroll down']");
-        public static By ethlizardNFT = By.XPath("//div[text()='Ethlizards']");
-        public static By spellfireNFT = By.XPath("//div[text()='SPELLFIRE']");
-        public static By spellfireNFTWhole = By.XPath("//div[@class='sc-1xf18x6-0 sc-dw611d-0 hocRfR bhhJtZ']");
         public static By sellButton = By.XPath("//a[text()='Sell']");
         public static By collectionLink = By.XPath("//a[@class='sc-1pie21o-0 elyzfO CollectionLink--link']");
         public static By sellPriceField = By.XPath("//input[@id='price']");
         public static By completeListingButton = By.XPath("//button[text()='Complete listing']");
-        public static By ethlizardNftToBeClicked = By.XPath("//div[contains(normalize-space(text()), 'Ethlizards #')]");
         public static By notEnoughWethMessage = By.CssSelector("div[aria-modal=true] span[role=status]");
         public static By addWethButton = By.XPath("//button[text()='Add WETH']");
         public static By wrapEthButton = By.XPath("//div[@class='type__TextWrapper-sc-16386l-0 type__TransitionTextWrapper-sc-16386l-1 iLOGtN krBtbX button button-large css-oldlf1']");
@@ -73,30 +53,20 @@ namespace OpenSeaBot
         public static By lowerPriceButton = By.XPath("//button[text()='Lower price']");
         public static By inputFieldLowerPrice = By.XPath("//input[@id='newAmount']");
         public static By setNewPriceButton = By.XPath("//button[text()='Set new price']");
-        public static By spellfireNftToBeClicked = By.XPath("//div[@class='sc-1xf18x6-0 sc-dw611d-0 hocRfR bhhJtZ']");
         public static By isCollectionReviewed = By.XPath("//div[@class='sc-1xf18x6-0 sc-1aqfqq9-0 haVRLx dqAHVz CollectionDetailsModal--details-header']");
         public static By checkBoxReviewedCollection = By.XPath("//input[@id='review-confirmation']");
-        public static string bestOfferNumberValue;
-        public static double myOfferNumber;
-        public static bool isUnreviewedCollection;
-        public static By offerPeriodDownArrow = By.XPath("//i[text()='keyboard_arrow_down']");
-        public static By offerPeriodTwelveHours = By.XPath("//div[@class='tippy-content']//span[text()='12 hours']");
-        public static double maxOfferNumber;
+        public static By offerPeriodDownArrow = By.CssSelector("div[cursor='pointer']");
+        public static By offerPeriodOneDay = By.CssSelector("div[data-tippy-root] li:first-of-type button");
         public static By activity = By.XPath("//span[text()='Activity']");
         public static By lastSevenDaysPeriod = By.CssSelector("div[data-tippy-root] li:first-of-type button");
         public static By arrowDownTimePeriod = By.CssSelector(".fresnel-container.fresnel-greaterThanOrEqual-lg div[cursor='pointer']");
         public static By SevenDaysAveragePrice = By.CssSelector(".PriceHistory--interface > div p:first-of-type");
-        public static string sevenDaysAveragePriceString;
-        public static string sevenDaysAveragePriceStringAfterRegexValue;
-        public static double sevenDaysAveragePriceNumber;
         public static By items = By.XPath("//span[text()='Items']");
-        public static double sevenDaysAveragePriceNumberPercentage;
-        public static double maxAvgPrice;
-        public static double timerAvgPrice = 10;
         public static By closeWindowElement = By.XPath("//i[text()='close']");
         public static string floorNftsLocator = $"//div[text()='{{0}}']";
         public static By buyNowButton = By.CssSelector("div[pointer-events='none'] i[value='account_balance_wallet']");
         public static By completePurchaseButton = By.XPath("//span[text()='Complete purchase']");
-        public static string SpellFireCollectionName = "SpellFire";
+        public static By floorPriceAllNfts = By.CssSelector("div[class*='Price--amount']");
+        public static By approveCollection = By.XPath("//p[text()='Approve collection']");
     }
 }
