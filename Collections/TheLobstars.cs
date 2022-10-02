@@ -12,7 +12,7 @@ namespace OpenSeaBot.Collections
     internal static class TheLobstars
     {
        public static void TheLobstarsCollection(WebDriver webDriver, By Nft, By NftToBeClicked, string NftCollection, string CollectionName, double fees, double profit,
-           double myPreviousOfferNumber)
+           double myOfferNumber)
         {
             /*try
             {*/
@@ -77,17 +77,17 @@ namespace OpenSeaBot.Collections
                 Thread.Sleep(4000);
                 MainPageMethods.SaveBestOfferNumber(webDriver);
 
-                if (MainPageElementsVariables.bestOfferNumber > myPreviousOfferNumber) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
+                if (MainPageElementsVariables.bestOfferNumber > myOfferNumber) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
                 {
                     //проверявам дали Best offer-а е с поне 15% по - ниска от Floor price-а
                     if ((MainPageElementsVariables.bestOfferNumber / MainPageElementsVariables.floorNumber) * 100 < 87.5 && 
                         MainPageElementsVariables.maxAvgPrice > MainPageElementsVariables.floorNumber)
                     {
                         //продължавам с пускането на офертата
-                        MainPageMethods.CalculateMyOfferNumber(webDriver, fees, profit + 2, myPreviousOfferNumber);
+                        MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, myOfferNumber);
                         MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElementsVariables.myOfferNumberString);
                         MainPageMethods.CheckIfWethIsEnough(webDriver);
-                        MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection);
+                        MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, myOfferNumber);
                         MainPageMethods.ClickMyOfferButton(webDriver);
                         MainPageMethods.SignTransactionWithMetamask(webDriver);
                     }

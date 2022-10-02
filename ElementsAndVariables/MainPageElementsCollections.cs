@@ -13,6 +13,7 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By ethlizardNFT = By.XPath("//div[text()='Ethlizards']");
         public static string ethlizardCollection = "https://opensea.io/collection/ethlizards";
         public static By ethlizardNftToBeClicked = By.XPath("//div[contains(normalize-space(text()), 'Ethlizards #')]");
+        
 
 
         //vividLimited
@@ -20,7 +21,8 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By vividLimitedNftToBeClicked = By.XPath("//div[contains(normalize-space(text()), 'VIVID #')]");
         public static string vividLimitedCollection = "https://opensea.io/collection/vividlimited";
         public static string vividLimitedCollectionName = "VividLimited";
-        public static double myPreviousOfferNumberVividLimited = 0;
+        public static double myOfferNumberVividLimited = 0;
+        //public static double myPreviousOfferNumberVividLimited = 0;
 
 
         //theLobstars
@@ -28,15 +30,18 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By theLobstarsNFT = By.XPath("//div[text()='The Lobstars']");
         public static By theLobstarsNftToBeClicked = By.XPath("//div[contains(normalize-space(text()), 'Lobstar #')]");
         public static string theLobstarsCollectionName = "The Lobstars";
-        public static double myPreviousOfferNumberTheLobstars = 0;
+        public static double myOfferNumberTheLobstars = 0;
+        //public static double myPreviousOfferNumberTheLobstars = 0;
 
 
-        //MutantGrandpaCountryClub
-        public static double myPreviousOfferNumberMutantGrandpaCountryClub = 0;
+        //mutantGrandpaCountryClub
+        //public static double myPreviousOfferNumberMutantGrandpaCountryClub = 0;
+        public static double myOfferNumberMutantGrandpaCountryClub = 0;
         public static string mutantGrandpaCountryClubCollection = "https://opensea.io/collection/mutantgrandpacountryclub";
         public static By mutantGrandpaCountryClubNFT = By.XPath("//div[text()='Mutant Grandpa Country Club']");
         public static By mutantGrandpaCountryClubNftToBeClicked = By.XPath("//div[contains(normalize-space(text()), 'Mutant Grandpa #')]");
         public static string mutantGrandpaCountryClubCollectionName = "Mutant Grandpa Country Club";
 
+        
     }
 }

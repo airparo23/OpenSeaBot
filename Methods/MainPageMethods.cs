@@ -2,12 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using OpenSeaBot.ElementsAndVariables;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace OpenSeaBot.Methods
 {
@@ -193,10 +188,10 @@ namespace OpenSeaBot.Methods
         public static void TypeMyOfferNumber(WebDriver webDriver, string myOfferNumber)
         {
             webDriver.FindElement(MainPageElements.amountField).SendKeys(myOfferNumber);
-            /*var offerPeriodDownArrowList = webDriver.FindElements(MainPageElements.offerPeriodDownArrow);
+            var offerPeriodDownArrowList = webDriver.FindElements(MainPageElements.offerPeriodDownArrow);
             offerPeriodDownArrowList[16].Click();
             Thread.Sleep(1000);
-            webDriver.FindElement(MainPageElements.offerPeriodOneDay).Click();*/
+            webDriver.FindElement(MainPageElements.offerPeriodOneDay).Click();
         }
 
         public static void ClickMyOfferButton(WebDriver webDriver)
@@ -260,7 +255,11 @@ namespace OpenSeaBot.Methods
             MainPageElementsVariables.mySellNumber = MainPageElementsVariables.floorNumber - 0.0001;
             string mySellNumberString = string.Format("{0:0.0000}", MainPageElementsVariables.mySellNumber);
             MainPageElementsVariables.mySellNumber = double.Parse(mySellNumberString);
+            CalculateMyMinimumSellNumber();
+
         }
+
+        
 
         public static void CalculatemySellNumberWhenAlreadyNftForSale(WebDriver webDriver)
         {
@@ -282,31 +281,76 @@ namespace OpenSeaBot.Methods
             MainPageElementsVariables.bestOfferNumber = double.Parse(MainPageElementsVariables.bestOfferNumberValue);
         }
 
-        public static void CalculateMyOfferNumber(WebDriver webDriver, double fees, double myProfit, double myPreviousOfferNumber)
+        public static void CalculateMyOfferNumber(double fees, double myProfit, double myOfferNumber)
         {
-
-            MainPageElementsVariables.myOfferNumber = MainPageElementsVariables.bestOfferNumber + 0.0002;
-            string myOfferNumberString = String.Format("{0:0.0000}", MainPageElementsVariables.myOfferNumber);
-            MainPageElementsVariables.myOfferNumber = double.Parse(myOfferNumberString);
-            CalculateMyMaxBestOffer(webDriver, fees, myProfit);
-            if (MainPageElementsVariables.myOfferNumber > MainPageElementsVariables.maxOfferNumber)
+            
+            myOfferNumber = MainPageElementsVariables.bestOfferNumber + 0.0002;
+            string myOfferNumberString = String.Format("{0:0.0000}", myOfferNumber);
+            myOfferNumber = double.Parse(myOfferNumberString);
+            CalculateMyMaxBestOffer(fees, myProfit);
+            if (myOfferNumber > MainPageElementsVariables.maxOfferNumber)
             {
-                MainPageElementsVariables.myOfferNumber = MainPageElementsVariables.maxOfferNumber;
-            }
-            myPreviousOfferNumber = MainPageElementsVariables.myOfferNumber; // това го запазвам, за да мога да го ползвам след следващият интервал, за да направя проверка с него. не съм
-            MainPageElementsVariables.myOfferNumberString = MainPageElementsVariables.myOfferNumber.ToString(); // сигурен дали ще работи, тъй като трябва да се направи интервала първо. проверката е малко по - нагоре
-                                                                                                                // от този метод
+                myOfferNumber = MainPageElementsVariables.maxOfferNumber;
+            }         
+            MainPageElementsVariables.myOfferNumberString = myOfferNumber.ToString();
+            
+            
         }
 
-        public static void CalculateMyMaxBestOffer(WebDriver webDriver, double fees, double myProfit)
+        public static void SaveMyOfferNumberInFile(OfferNumber.OfferNumberConstructor myOfferNumber)
+        {
+            switch(myOfferNumber.CollectionName)
+            {
+                case OfferNumber.String.myOfferNumberVividLimited: 
+                    string VividLimitedFile = "K:/OpenSea_Bot_Files/VividLimited";
+                    StreamWriter VividLimitedWriter = new StreamWriter(VividLimitedFile, false);
+                    File.WriteAllText(VividLimitedFile, myOfferNumber.Number.ToString());
+                    VividLimitedWriter.Close();
+                    break;
+                case OfferNumber.String.myOfferNumberTheLobstars:
+                    string TheLobstarsFile = "K:/OpenSea_Bot_Files/TheLobstars";
+                    StreamWriter TheLobstarsWriter = new StreamWriter(TheLobstarsFile, false);
+                    File.WriteAllText(TheLobstarsFile, myOfferNumber.Number.ToString());
+                    TheLobstarsWriter.Close();
+                    break;
+                case OfferNumber.String.myOfferNumberMutantGrandpaCountryClub:
+                    string MutantGrandpaCountryClubFile = "K:/OpenSea_Bot_Files/MutantGrandpaCountryClub";
+                    StreamWriter MutantGrandpaCountryClubWriter = new StreamWriter(MutantGrandpaCountryClubFile, false);
+                    File.WriteAllText(MutantGrandpaCountryClubFile, myOfferNumber.Number.ToString());
+                    MutantGrandpaCountryClubWriter.Close();
+                    break;
+
+            }
+        }
+
+        
+
+
+
+        enum myOfferNumberEnum
+        {
+            myOfferNumberVividLimited,
+            myOfferNumberTheLobstars,
+            myOfferNumberMutantGrandpaCountryClub
+
+        }
+
+
+        public static void CalculateMyMaxBestOffer(double fees, double myProfit)
         {
             double feesPlusMyProfitPercentage = fees + myProfit;
             double feesPlusMyProfitNumber = feesPlusMyProfitPercentage / 100;
             double feesAndProfit = MainPageElementsVariables.floorNumber * feesPlusMyProfitNumber;
             MainPageElementsVariables.maxOfferNumber = MainPageElementsVariables.floorNumber - feesAndProfit;
-
+        }
+        public static void CalculateMyMinimumSellNumber(double fees, double myProfit) // тук съм започнал 
+        {
+            double feesPlusMyProfitPercentage = fees + myProfit;
+            double feesPlusMyProfitNumber = feesPlusMyProfitPercentage / 100;
 
         }
+
+        
 
         public static void CheckIfWethIsEnough(WebDriver webDriver)
         {
@@ -329,12 +373,12 @@ namespace OpenSeaBot.Methods
             }
         }
 
-        public static void SwapWethForEthIfNeeded(WebDriver webDriver, string NftCollection)
+        public static void SwapWethForEthIfNeeded(WebDriver webDriver, string NftCollection, double myOfferNumber)
         {
             if (MainPageElementsVariables.isNotEnoughWeth)
             {
                 webDriver.FindElement(MainPageElements.addWethButton).Click();
-                double wEthNumberToSwap = MainPageElementsVariables.myOfferNumber + 0.005;
+                double wEthNumberToSwap = myOfferNumber + 0.005;
                 string wEthNumberToSwapString = String.Format("{0:0.0000}", wEthNumberToSwap);
                 Thread.Sleep(3000);
                 var fieldForSwapingWeth = webDriver.FindElements(By.XPath("//input[@class='Input-sc-1e35ws5-0 leKAIy TokenInput__ValueInput-sc-8sl0d3-1 heITGp']"));

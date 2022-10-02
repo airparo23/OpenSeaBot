@@ -36,18 +36,19 @@ namespace OpenSeaBot
             {               
                 VividLimited.VividLimitedCollection(webDriver, MainPageElementsCollections.vividLimitedNFT, MainPageElementsCollections.vividLimitedNftToBeClicked,
                     MainPageElementsCollections.vividLimitedCollection, MainPageElementsCollections.vividLimitedCollectionName, 7.5, 5,
-                    MainPageElementsCollections.myPreviousOfferNumberVividLimited);
+                    OfferNumber.String.myOfferNumberVividLimited);
 
                 MutantGrandpaCountryClub.MutantGrandpaCountryClubCollection(webDriver, MainPageElementsCollections.mutantGrandpaCountryClubNFT, 
                     MainPageElementsCollections.mutantGrandpaCountryClubNftToBeClicked,
                     MainPageElementsCollections.mutantGrandpaCountryClubCollection, MainPageElementsCollections.mutantGrandpaCountryClubCollectionName, 7.5, 5,
-                    MainPageElementsCollections.myPreviousOfferNumberMutantGrandpaCountryClub);
+                    MainPageElementsCollections.myOfferNumberMutantGrandpaCountryClub);
 
                 TheLobstars.TheLobstarsCollection(webDriver, MainPageElementsCollections.theLobstarsNFT, MainPageElementsCollections.theLobstarsNftToBeClicked,
                     MainPageElementsCollections.theLobstarsCollection, MainPageElementsCollections.theLobstarsCollectionName, 7.5, 5,
-                    MainPageElementsCollections.myPreviousOfferNumberTheLobstars);
+                    MainPageElementsCollections.myOfferNumberTheLobstars);
 
                 Thread.Sleep(1000); // 5 минути - 300000
+                //добави съответния myOfferNumber в OfferNumberConstructor
             }
 
         }
