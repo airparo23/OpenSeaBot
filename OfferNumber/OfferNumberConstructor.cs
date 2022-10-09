@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenSeaBot.OfferNumber
+namespace OpenSeaBot.Offer
 {
-    public class OfferNumberConstructor
+    public class Offer
     {
-        public double Number { get; set; }
-        public String CollectionName { get; set; }
+        public double Value { get; set; }
+        public OfferType Type { get; set; }
     }
 
-    public enum String
+    public enum OfferType
     {
-        myOfferNumberVividLimited,
-        myOfferNumberTheLobstars,
-        myOfferNumberMutantGrandpaCountryClub
+        VividLimited,
+        TheLobstars,
+        MutantGrandpaCountryClub
     }
+
+
 }

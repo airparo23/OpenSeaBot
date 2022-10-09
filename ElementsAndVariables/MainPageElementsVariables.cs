@@ -16,14 +16,12 @@ namespace OpenSeaBot.ElementsAndVariables
         public static double mySellNumber;
         public static string mySellNumberWhenAlreadyNftForSaleValue;
         public static double mySellNumberWhenAlreadyNftForSaleNumber;
-        //public static double myPreviousOfferNumber = 0;
         public static bool isVisible;
         public static bool isSellButtonVisible;
         public static double bestOfferNumber;
         public static string myOfferNumberString;
         public static bool isNotEnoughWeth;
         public static string bestOfferNumberValue;
-        //public static double myOfferNumber;
         public static bool isUnreviewedCollection;
         public static double maxOfferNumber;
         public static string sevenDaysAveragePriceString;

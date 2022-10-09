@@ -1,7 +1,5 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.Text.RegularExpressions;
-using System.Collections.ObjectModel;
 using OpenSeaBot.Collections;
 using OpenSeaBot.ElementsAndVariables;
 using OpenSeaBot.Methods;
@@ -21,6 +19,7 @@ namespace OpenSeaBot
         [Test]
         public void StartBot()
         {
+
             var chromeDriverService = ChromeDriverService.CreateDefaultService();
             var option = new ChromeOptions();
 
@@ -32,25 +31,40 @@ namespace OpenSeaBot
                 MainPageElements.word7, MainPageElements.word8, MainPageElements.word9, MainPageElements.word10, MainPageElements.word11, MainPageElements.word12, webDriver);
             MainPageMethods.ConnectMetamaskToOpenSea(webDriver);
 
-            while(true)
-            {               
-                VividLimited.VividLimitedCollection(webDriver, MainPageElementsCollections.vividLimitedNFT, MainPageElementsCollections.vividLimitedNftToBeClicked,
-                    MainPageElementsCollections.vividLimitedCollection, MainPageElementsCollections.vividLimitedCollectionName, 7.5, 5,
-                    OfferNumber.String.myOfferNumberVividLimited);
+            //await startTimer(webDriver);
 
-                MutantGrandpaCountryClub.MutantGrandpaCountryClubCollection(webDriver, MainPageElementsCollections.mutantGrandpaCountryClubNFT, 
-                    MainPageElementsCollections.mutantGrandpaCountryClubNftToBeClicked,
-                    MainPageElementsCollections.mutantGrandpaCountryClubCollection, MainPageElementsCollections.mutantGrandpaCountryClubCollectionName, 7.5, 5,
-                    MainPageElementsCollections.myOfferNumberMutantGrandpaCountryClub);
 
-                TheLobstars.TheLobstarsCollection(webDriver, MainPageElementsCollections.theLobstarsNFT, MainPageElementsCollections.theLobstarsNftToBeClicked,
-                    MainPageElementsCollections.theLobstarsCollection, MainPageElementsCollections.theLobstarsCollectionName, 7.5, 5,
-                    MainPageElementsCollections.myOfferNumberTheLobstars);
 
-                Thread.Sleep(1000); // 5 минути - 300000
-                //добави съответния myOfferNumber в OfferNumberConstructor
+            
+
+        }
+
+        public async Task startTimer(WebDriver webDriver)
+        {
+            var timer = new PeriodicTimer(TimeSpan.FromSeconds(10));
+
+            while (await timer.WaitForNextTickAsync())
+            {
+                /*VividLimited.VividLimitedCollection(webDriver, MainPageElementsCollections.vividLimitedNFT, MainPageElementsCollections.vividLimitedNftToBeClicked,
+                    MainPageElementsCollections.vividLimitedCollection, MainPageElementsCollections.vividLimitedCollectionName, 7.5, 5, 
+                    MainPageElementsCollections.initialValueOfferVividLimited);*/
+                try {
+                    MutantGrandpaCountryClub.MutantGrandpaCountryClubCollection(webDriver, MainPageElementsCollections.mutantGrandpaCountryClubNFT,
+                        MainPageElementsCollections.mutantGrandpaCountryClubNftToBeClicked,
+                        MainPageElementsCollections.mutantGrandpaCountryClubCollection, MainPageElementsCollections.mutantGrandpaCountryClubCollectionName, 7.5, 5,
+                        MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
+                }
+                catch {
+                    //MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
+                    //TestContext.Progress.WriteLine("Нещо се счупи в {0} в {1}!", CollectionName, DateTime.Now);
+                }
             }
+                
 
+                /*TheLobstars.TheLobstarsCollection(webDriver, MainPageElementsCollections.theLobstarsNFT, MainPageElementsCollections.theLobstarsNftToBeClicked,
+                    MainPageElementsCollections.theLobstarsCollection, MainPageElementsCollections.theLobstarsCollectionName, 7.5, 5, 
+                    MainPageElementsCollections.initialValueOfferTheLobstars);*/
+            
         }
     }
 }

@@ -12,10 +12,12 @@ namespace OpenSeaBot.Collections
     internal static class TheLobstars
     {
        public static void TheLobstarsCollection(WebDriver webDriver, By Nft, By NftToBeClicked, string NftCollection, string CollectionName, double fees, double profit,
-           double myOfferNumber)
+           double initialValue)
         {
             /*try
             {*/
+             
+            
             MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
             MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
             MainPageMethods.IsNftBought(webDriver, Nft);
@@ -37,7 +39,9 @@ namespace OpenSeaBot.Collections
                     MainPageMethods.CheckBoxIfUnreviewedCollection(webDriver);*/
                     Thread.Sleep(3000);
                     MainPageMethods.SaveFloorNumber(webDriver);
-                    MainPageMethods.CalculateMySellNumber();
+                    var collectionType = new Offer.Offer { Type = Offer.OfferType.MutantGrandpaCountryClub };
+
+                    MainPageMethods.CalculateMySellNumber(fees, profit, collectionType, webDriver);
                     MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
                     MainPageMethods.GoIntoNft(webDriver, NftToBeClicked);
                     MainPageMethods.ClickSellButton(webDriver);
@@ -77,17 +81,21 @@ namespace OpenSeaBot.Collections
                 Thread.Sleep(4000);
                 MainPageMethods.SaveBestOfferNumber(webDriver);
 
-                if (MainPageElementsVariables.bestOfferNumber > myOfferNumber) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
+                if (MainPageElementsVariables.bestOfferNumber > initialValue) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
                 {
-                    //проверявам дали Best offer-а е с поне 15% по - ниска от Floor price-а
-                    if ((MainPageElementsVariables.bestOfferNumber / MainPageElementsVariables.floorNumber) * 100 < 87.5 && 
-                        MainPageElementsVariables.maxAvgPrice > MainPageElementsVariables.floorNumber)
+
+                    //проверявам дали Best offer-а е с поне 12.5% по - ниска от Floor price-а 
+                    if ((MainPageElementsVariables.bestOfferNumber / MainPageElementsVariables.floorNumber) * 100 < 87.5 &&
+                    MainPageElementsVariables.maxAvgPrice > MainPageElementsVariables.floorNumber)
                     {
                         //продължавам с пускането на офертата
-                        MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, myOfferNumber);
-                        MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElementsVariables.myOfferNumberString);
+                        initialValue = MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, initialValue);
+                        var offer = new Offer.Offer { Value = initialValue, Type = Offer.OfferType.TheLobstars };
+
+                        MainPageMethods.SaveMyOfferNumberInFile(offer);
+                        MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElementsVariables.myOfferNumberString); //питай Боби
                         MainPageMethods.CheckIfWethIsEnough(webDriver);
-                        MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, myOfferNumber);
+                        MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, initialValue);
                         MainPageMethods.ClickMyOfferButton(webDriver);
                         MainPageMethods.SignTransactionWithMetamask(webDriver);
                     }

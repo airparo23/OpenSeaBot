@@ -55,8 +55,8 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By setNewPriceButton = By.XPath("//button[text()='Set new price']");
         public static By isCollectionReviewed = By.XPath("//div[@class='sc-1xf18x6-0 sc-1aqfqq9-0 haVRLx dqAHVz CollectionDetailsModal--details-header']");
         public static By checkBoxReviewedCollection = By.XPath("//input[@id='review-confirmation']");
-        public static By offerPeriodDownArrow = By.CssSelector("div[cursor='pointer']");
-        public static By offerPeriodOneDay = By.CssSelector("div[data-tippy-root] li:first-of-type button");
+        public static By offerPeriodDownArrow = By.CssSelector("div[style='width: 181px;']");
+        public static By offerPeriodCustom = By.CssSelector(".tippy-content li:last-child");
         public static By activity = By.XPath("//span[text()='Activity']");
         public static By lastSevenDaysPeriod = By.CssSelector("div[data-tippy-root] li:first-of-type button");
         public static By arrowDownTimePeriod = By.CssSelector(".fresnel-container.fresnel-greaterThanOrEqual-lg div[cursor='pointer']");
@@ -64,8 +64,8 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By items = By.XPath("//span[text()='Items']");
         public static By closeWindowElement = By.XPath("//i[text()='close']");
         public static string floorNftsLocator = $"//div[text()='{{0}}']";
-        public static By buyNowButton = By.CssSelector("div[pointer-events='none'] i[value='account_balance_wallet']");
-        public static By completePurchaseButton = By.XPath("//span[text()='Complete purchase']");
+        public static By addToCartButton = By.XPath("//button[text()='Add to cart']");
+        public static By completePurchaseButton = By.XPath("//button[text()='Complete purchase']");
         public static By floorPriceAllNfts = By.CssSelector("div[class*='Price--amount']");
         public static By approveCollection = By.XPath("//p[text()='Approve collection']");
     }
