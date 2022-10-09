@@ -3,6 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenSeaBot.Collections;
 using OpenSeaBot.ElementsAndVariables;
 using OpenSeaBot.Methods;
+using System.Collections;
 
 namespace OpenSeaBot
 {
@@ -17,9 +18,8 @@ namespace OpenSeaBot
         }
 
         [Test]
-        public void StartBot()
+        public async Task StartBot()
         {
-
             var chromeDriverService = ChromeDriverService.CreateDefaultService();
             var option = new ChromeOptions();
 
@@ -31,12 +31,7 @@ namespace OpenSeaBot
                 MainPageElements.word7, MainPageElements.word8, MainPageElements.word9, MainPageElements.word10, MainPageElements.word11, MainPageElements.word12, webDriver);
             MainPageMethods.ConnectMetamaskToOpenSea(webDriver);
 
-            //await startTimer(webDriver);
-
-
-
-            
-
+            await startTimer(webDriver);
         }
 
         public async Task startTimer(WebDriver webDriver)
@@ -49,12 +44,16 @@ namespace OpenSeaBot
                     MainPageElementsCollections.vividLimitedCollection, MainPageElementsCollections.vividLimitedCollectionName, 7.5, 5, 
                     MainPageElementsCollections.initialValueOfferVividLimited);*/
                 try {
-                    MutantGrandpaCountryClub.MutantGrandpaCountryClubCollection(webDriver, MainPageElementsCollections.mutantGrandpaCountryClubNFT,
+                    MutantGrandpaCountryClub.MutantGrandpaCountryClubCollection(
+                        webDriver, 
+                        MainPageElementsCollections.mutantGrandpaCountryClubNFT,
                         MainPageElementsCollections.mutantGrandpaCountryClubNftToBeClicked,
-                        MainPageElementsCollections.mutantGrandpaCountryClubCollection, MainPageElementsCollections.mutantGrandpaCountryClubCollectionName, 7.5, 5,
-                        MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
+                        MainPageElementsCollections.mutantGrandpaCountryClubCollection,
+                        7.5,
+                        5);
                 }
                 catch {
+                    // throw new Exception(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.mutantGrandpaCountryClubCollectionName, DateTime.Now));
                     //MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
                     //TestContext.Progress.WriteLine("Нещо се счупи в {0} в {1}!", CollectionName, DateTime.Now);
                 }

@@ -1,23 +1,19 @@
 ﻿using OpenQA.Selenium;
 using OpenSeaBot.ElementsAndVariables;
 using OpenSeaBot.Methods;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenSeaBot.Collections
 {
     internal static class MutantGrandpaCountryClub
     {
-       public static void MutantGrandpaCountryClubCollection(WebDriver webDriver, By Nft, By NftToBeClicked, string NftCollection, string CollectionName, double fees, 
-           double profit, double initialValue)
+       public static void MutantGrandpaCountryClubCollection(
+           WebDriver webDriver, 
+           By Nft, 
+           By NftToBeClicked, 
+           string NftCollection, 
+           double fees, 
+           double profit)
         {
-            /*try
-            {*/
-             
-            
             MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
             MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
             MainPageMethods.IsNftBought(webDriver, Nft);
@@ -82,7 +78,7 @@ namespace OpenSeaBot.Collections
                 Thread.Sleep(4000);
                 MainPageMethods.SaveBestOfferNumber(webDriver);
 
-                if (MainPageElementsVariables.bestOfferNumber > initialValue) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
+                if (MainPageElementsVariables.bestOfferNumber > MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
                 {
 
                     //проверявам дали Best offer-а е с поне 12.5% по - ниска от Floor price-а 
@@ -90,25 +86,18 @@ namespace OpenSeaBot.Collections
                     MainPageElementsVariables.maxAvgPrice > MainPageElementsVariables.floorNumber)
                     {
                         //продължавам с пускането на офертата
-                        initialValue = MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, initialValue);
-                        var offer = new Offer.Offer { Value = initialValue, Type = Offer.OfferType.MutantGrandpaCountryClub };
+                        MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub = MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
+                        var offer = new Offer.Offer { Value = MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub, Type = Offer.OfferType.MutantGrandpaCountryClub };
 
                         MainPageMethods.SaveMyOfferNumberInFile(offer);
                         MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElementsVariables.myOfferNumberString); //питай Боби
                         MainPageMethods.CheckIfWethIsEnough(webDriver);
-                        MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, initialValue);
+                        MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
                         MainPageMethods.ClickMyOfferButton(webDriver);
                         MainPageMethods.SignTransactionWithMetamask(webDriver);
                     }
                 }
-
             }
-
-            /*}
-            catch {
-                MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
-                TestContext.Progress.WriteLine("Нещо се счупи в {0} в {1}!", CollectionName, DateTime.Now); }*/
-
         }
     }
 }
