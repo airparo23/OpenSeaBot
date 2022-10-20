@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dev\\ParoBot\\OpenSeaBot.csproj": {}
+    "K:\\OpenSeaBot\\Milen\\OpenSeaBot.csproj": {}
   },
   "projects": {
-    "D:\\Dev\\ParoBot\\OpenSeaBot.csproj": {
+    "K:\\OpenSeaBot\\Milen\\OpenSeaBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dev\\ParoBot\\OpenSeaBot.csproj",
+        "projectUniqueName": "K:\\OpenSeaBot\\Milen\\OpenSeaBot.csproj",
         "projectName": "OpenSeaBot",
-        "projectPath": "D:\\Dev\\ParoBot\\OpenSeaBot.csproj",
-        "packagesPath": "C:\\Users\\Landanan\\.nuget\\packages\\",
-        "outputPath": "D:\\Dev\\ParoBot\\obj\\",
+        "projectPath": "K:\\OpenSeaBot\\Milen\\OpenSeaBot.csproj",
+        "packagesPath": "C:\\Users\\aspar\\.nuget\\packages\\",
+        "outputPath": "K:\\OpenSeaBot\\Milen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Landanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aspar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -66,11 +66,11 @@
             },
             "Selenium.WebDriver": {
               "target": "Package",
-              "version": "[4.3.0, )"
+              "version": "[4.5.1, )"
             },
             "Selenium.WebDriver.ChromeDriver": {
               "target": "Package",
-              "version": "[104.0.5112.7900, )"
+              "version": "[106.0.5249.6100, )"
             },
             "coverlet.collector": {
               "target": "Package",
@@ -93,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

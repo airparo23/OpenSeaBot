@@ -330,7 +330,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/12.0.3": {
+      "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -384,10 +384,10 @@
           "build/netcoreapp2.1/NUnit3TestAdapter.props": {}
         }
       },
-      "Selenium.WebDriver/4.3.0": {
+      "Selenium.WebDriver/4.5.1": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
           "lib/net5.0/WebDriver.dll": {}
@@ -396,7 +396,7 @@
           "lib/net5.0/WebDriver.dll": {}
         }
       },
-      "Selenium.WebDriver.ChromeDriver/104.0.5112.7900": {
+      "Selenium.WebDriver.ChromeDriver/106.0.5249.6100": {
         "type": "package",
         "build": {
           "build/Selenium.WebDriver.ChromeDriver.targets": {}
@@ -1213,10 +1213,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/12.0.3": {
-      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
-      "path": "newtonsoft.json/12.0.3",
+      "path": "newtonsoft.json/13.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1235,11 +1235,7 @@
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
@@ -1328,10 +1324,10 @@
         "nunit3testadapter.nuspec"
       ]
     },
-    "Selenium.WebDriver/4.3.0": {
-      "sha512": "dDRbNrpzmII+ZnPLJF7ka2nygR/jnY0BfIl2rsyp1TJXQmr2ayv9tzq1ZBwqwRc1LkHC5zFAi1X3yboFWp0j+Q==",
+    "Selenium.WebDriver/4.5.1": {
+      "sha512": "ztu9Qv2n5/NkqPs0MQ3nojMJuW2PVHrAKDukmT77HbYAGhZI370Hp0EJNqyucJuud937Lr/qvXsoOtLZ18VFnw==",
       "type": "package",
-      "path": "selenium.webdriver/4.3.0",
+      "path": "selenium.webdriver/4.5.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1343,14 +1339,14 @@
         "lib/net5.0/WebDriver.dll",
         "lib/netstandard2.0/WebDriver.dll",
         "lib/netstandard2.1/WebDriver.dll",
-        "selenium.webdriver.4.3.0.nupkg.sha512",
+        "selenium.webdriver.4.5.1.nupkg.sha512",
         "selenium.webdriver.nuspec"
       ]
     },
-    "Selenium.WebDriver.ChromeDriver/104.0.5112.7900": {
-      "sha512": "vDH+7FqF4APZtvqyqtJ8XYTTh523EsUV88CpqW4d2xjxKjUp6ifpeLi9rDhnSuruDIoQDLJvRBZPI7UlcMTXOw==",
+    "Selenium.WebDriver.ChromeDriver/106.0.5249.6100": {
+      "sha512": "ZJA+xb9uLlxmrkPsWziPpoi3sVMzuvQ2pHDpCM/OtCV72u2iJZL/UP0eGGtjS9neOzTOjO7bdeUkur0hCipGHw==",
       "type": "package",
-      "path": "selenium.webdriver.chromedriver/104.0.5112.7900",
+      "path": "selenium.webdriver.chromedriver/106.0.5249.6100",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1362,7 +1358,7 @@
         "driver/mac64arm/chromedriver",
         "driver/win32/chromedriver.exe",
         "nupkg-icon.png",
-        "selenium.webdriver.chromedriver.104.0.5112.7900.nupkg.sha512",
+        "selenium.webdriver.chromedriver.106.0.5249.6100.nupkg.sha512",
         "selenium.webdriver.chromedriver.nuspec"
       ]
     },
@@ -1396,25 +1392,25 @@
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.3.0",
       "NUnit3TestAdapter >= 4.2.1",
-      "Selenium.WebDriver >= 4.3.0",
-      "Selenium.WebDriver.ChromeDriver >= 104.0.5112.7900",
+      "Selenium.WebDriver >= 4.5.1",
+      "Selenium.WebDriver.ChromeDriver >= 106.0.5249.6100",
       "coverlet.collector >= 3.1.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Landanan\\.nuget\\packages\\": {}
+    "C:\\Users\\aspar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dev\\ParoBot\\OpenSeaBot.csproj",
+      "projectUniqueName": "K:\\OpenSeaBot\\Milen\\OpenSeaBot.csproj",
       "projectName": "OpenSeaBot",
-      "projectPath": "D:\\Dev\\ParoBot\\OpenSeaBot.csproj",
-      "packagesPath": "C:\\Users\\Landanan\\.nuget\\packages\\",
-      "outputPath": "D:\\Dev\\ParoBot\\obj\\",
+      "projectPath": "K:\\OpenSeaBot\\Milen\\OpenSeaBot.csproj",
+      "packagesPath": "C:\\Users\\aspar\\.nuget\\packages\\",
+      "outputPath": "K:\\OpenSeaBot\\Milen\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Landanan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aspar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1466,11 +1462,11 @@
           },
           "Selenium.WebDriver": {
             "target": "Package",
-            "version": "[4.3.0, )"
+            "version": "[4.5.1, )"
           },
           "Selenium.WebDriver.ChromeDriver": {
             "target": "Package",
-            "version": "[104.0.5112.7900, )"
+            "version": "[106.0.5249.6100, )"
           },
           "coverlet.collector": {
             "target": "Package",
@@ -1493,7 +1489,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

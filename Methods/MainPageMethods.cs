@@ -40,7 +40,7 @@ namespace OpenSeaBot.Methods
         {
             WaitForAnElementToShow(webDriver, MainPageElements.word1);
 
-            string[] pass = { "" };
+            string[] pass = {  };
             By[] passFields = { word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12 };
             int i = 0;
             int j = 0;
@@ -85,6 +85,7 @@ namespace OpenSeaBot.Methods
         {
             WaitForAnElementToShow(driver, MainPageElements.makeCollectionOfferButton);
             driver.FindElement(MainPageElements.makeCollectionOfferButton).Click();
+            Thread.Sleep(4000);
         }
 
         public static void IsNftBought(WebDriver webDriver, By Nft)
@@ -125,27 +126,32 @@ namespace OpenSeaBot.Methods
         public static void ClickSellButton(WebDriver webDriver)
         {
             WaitForAnElementToShow(webDriver, MainPageElements.sellButton);
+            Thread.Sleep(3000);
             webDriver.FindElement(MainPageElements.sellButton).Click();
         }
 
         public static void TypeMySellNumberAndCompleteListing(WebDriver webDriver)
         {
-            string mySellNumberString = MainPageElementsVariables.mySellNumber.ToString();
+            /*string mySellNumberString = MainPageElementsVariables.mySellNumber.ToString();
             WaitForAnElementToShow(webDriver, MainPageElements.sellPriceField);
             webDriver.FindElement(MainPageElements.sellPriceField).SendKeys(mySellNumberString);
             webDriver.FindElement(MainPageElements.completeListingButton).Click();
-            Thread.Sleep(4000);
+            Thread.Sleep(4000);*/
         }
         public static void ConfirmSellInMetamask(WebDriver webDriver)
         {
-            ApproveCollectionIfNeeded(webDriver);
-
-            WaitForAnElementToShow(webDriver, MainPageElements.downArrowMetamask);
+            /*WaitForAnElementToShow(webDriver, MainPageElements.downArrowMetamask);
 
             webDriver.FindElement(MainPageElements.downArrowMetamask).Click();
             WaitForAnElementToShow(webDriver, MainPageElements.signMetamaskButton);
 
-            webDriver.FindElement(MainPageElements.signMetamaskButton).Click();
+            webDriver.FindElement(MainPageElements.signMetamaskButton).Click();*/
+            Thread.Sleep(3000);
+            webDriver.FindElement(MainPageElements.confirmMetamaskButton).Click();
+            webDriver.SwitchTo().Window(webDriver.WindowHandles[1]);
+            ApproveCollectionIfNeeded(webDriver);
+
+
         }
 
         public static void CheckIfCollectionIsToBeApproved(WebDriver webDriver)
@@ -166,10 +172,12 @@ namespace OpenSeaBot.Methods
             CheckIfCollectionIsToBeApproved(webDriver);
             if (MainPageElementsVariables.isCollectionApproved == false)
             {
-                webDriver.FindElement(MainPageElements.confirmMetamaskButton).Click();
-                webDriver.SwitchTo().Window(webDriver.WindowHandles[1]);
-                Thread.Sleep(18000);
+                Thread.Sleep(15000);
                 webDriver.SwitchTo().Window(webDriver.WindowHandles[2]);
+                WaitForAnElementToShow(webDriver, MainPageElements.downArrowMetamask);
+                webDriver.FindElement(MainPageElements.downArrowMetamask).Click();
+                WaitForAnElementToShow(webDriver, MainPageElements.signMetamaskButton);
+                webDriver.FindElement(MainPageElements.signMetamaskButton).Click();
             }
         }
         public static void ClickLowerPriceButton(WebDriver webDriver)
@@ -197,7 +205,7 @@ namespace OpenSeaBot.Methods
         public static void ClickMyOfferButton(WebDriver webDriver)
         {
             webDriver.FindElement(MainPageElements.makeOfferButton).Click();
-            Thread.Sleep(12000);
+            Thread.Sleep(20000);
             webDriver.SwitchTo().Window(webDriver.WindowHandles[2]);
         }
 
@@ -248,6 +256,17 @@ namespace OpenSeaBot.Methods
 
         }
 
+        public static void SaveFloorNumber(WebDriver webDriver, string nftCollection)
+        {
+            var floorNumbersList = webDriver.FindElements(MainPageElements.floorPriceAllNfts);
+            floorNumbersList[0].Click();
+            WaitForAnElementToShow(webDriver, MainPageElements.floorPriceInNft);
+
+            MainPageElementsVariables.floorPrice = webDriver.FindElement(MainPageElements.floorPriceInNft).Text;
+            MainPageElementsVariables.floorNumber = double.Parse(MainPageElementsVariables.floorPrice);
+            GoToCollection(webDriver, nftCollection);
+        }
+
 
 
         public static void CalculateMySellNumber(double fees, double myProfit, Offer.Offer collectionType, WebDriver webDriver)
@@ -261,11 +280,11 @@ namespace OpenSeaBot.Methods
                 var floorNumbersList = webDriver.FindElements(MainPageElements.floorPriceAllNfts);
                 for(int i = 0; i < floorNumbersList.Count; i++)
                 {
-                    string floorNumberString = floorNumbersList[i].ToString();
+                    string floorNumberString = floorNumbersList[i].Text;
                     double floorNumber = double.Parse(floorNumberString);
                     if(floorNumber - 0.0001 > myMinSellNumber)
                     {
-                        MainPageElementsVariables.mySellNumber = floorNumber - 0.0001;
+                        MainPageElementsVariables.mySellNumber = floorNumber - 0.001;
                         return;
                     }
                 }
@@ -307,8 +326,11 @@ namespace OpenSeaBot.Methods
             CalculateMyMaxBestOffer(fees, myProfit);
             if (myOfferNumber > MainPageElementsVariables.maxOfferNumber)
             {
-                myOfferNumber = MainPageElementsVariables.maxOfferNumber;
-            }         
+                MainPageElementsVariables.isMyOfferOnProfit = false;
+            } else
+            {
+                MainPageElementsVariables.isMyOfferOnProfit = true;
+            }        
             MainPageElementsVariables.myOfferNumberString = myOfferNumber.ToString();
 
             return myOfferNumber;
@@ -339,6 +361,70 @@ namespace OpenSeaBot.Methods
                         sw.WriteLine(myOffer.Value.ToString());
                     }
                     break;
+                case OfferType.RetroArcadeCollection:
+                    string RetroArcadeCollectionFile = "K:/OpenSea_Bot_Files/RetroArcadeCollection.txt";
+                    using (StreamWriter sw = File.AppendText(RetroArcadeCollectionFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.RubberDuckBathParty:
+                    string RubberDuckBathPartyFile = "K:/OpenSea_Bot_Files/RubberDuckBathParty.txt";
+                    using (StreamWriter sw = File.AppendText(RubberDuckBathPartyFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.AntonymGENESIS:
+                    string AntonymGENESISFile = "K:/OpenSea_Bot_Files/AntonymGENESIS.txt";
+                    using (StreamWriter sw = File.AppendText(AntonymGENESISFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.AINightbirds:
+                    string AINightbirdsFile = "K:/OpenSea_Bot_Files/AINightbirds.txt";
+                    using (StreamWriter sw = File.AppendText(AINightbirdsFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.ChildrenofUkiyo:
+                    string ChildrenofUkiyoFile = "K:/OpenSea_Bot_Files/ChildrenofUkiyo.txt";
+                    using (StreamWriter sw = File.AppendText(ChildrenofUkiyoFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.FlowerLolitaCollections:
+                    string FlowerLolitaCollectionsFile = "K:/OpenSea_Bot_Files/FlowerLolitaCollections.txt";
+                    using (StreamWriter sw = File.AppendText(FlowerLolitaCollectionsFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.TheMekabots:
+                    string TheMekabotsFile = "K:/OpenSea_Bot_Files/TheMekabots.txt";
+                    using (StreamWriter sw = File.AppendText(TheMekabotsFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.GirliesNFT:
+                    string GirliesNFTFile = "K:/OpenSea_Bot_Files/GirliesNFT.txt";
+                    using (StreamWriter sw = File.AppendText(GirliesNFTFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+                case OfferType.JapaneseBornApeSociety:
+                    string JapaneseBornApeSocietyFile = "K:/OpenSea_Bot_Files/JapaneseBornApeSociety.txt";
+                    using (StreamWriter sw = File.AppendText(JapaneseBornApeSocietyFile))
+                    {
+                        sw.WriteLine(myOffer.Value.ToString());
+                    }
+                    break;
+
 
             }
         }
@@ -349,6 +435,7 @@ namespace OpenSeaBot.Methods
             double feesPlusMyProfitPercentage = fees + myProfit;
             double feesPlusMyProfitNumber = feesPlusMyProfitPercentage / 100;
             double feesAndProfit = MainPageElementsVariables.floorNumber * feesPlusMyProfitNumber;
+            feesAndProfit = Math.Round(feesAndProfit, 4);
             MainPageElementsVariables.maxOfferNumber = MainPageElementsVariables.floorNumber - feesAndProfit;
         }
         public static double CalculateMyMinimumSellNumber(double fees, double myProfit, Offer.Offer collectionType) // тук съм започнал 
@@ -368,12 +455,40 @@ namespace OpenSeaBot.Methods
                 case OfferType.MutantGrandpaCountryClub:
                     myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/MutantGrandpaCountryClub.txt").Last();
                     break;
+                case OfferType.RubberDuckBathParty:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/RubberDuckBathParty.txt").Last();
+                    break;
+                case OfferType.RetroArcadeCollection:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/RetroArcadeCollection.txt").Last();
+                    break;
+                case OfferType.AntonymGENESIS:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/AntonymGENESIS.txt").Last();
+                    break;
+                case OfferType.AINightbirds:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/AINightbirds.txt").Last();
+                    break;
+                case OfferType.ChildrenofUkiyo:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/ChildrenofUkiyo.txt").Last();
+                    break;
+                case OfferType.FlowerLolitaCollections:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/FlowerLolitaCollections.txt").Last();
+                    break;
+                case OfferType.TheMekabots:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/TheMekabots.txt").Last();
+                    break;
+                case OfferType.GirliesNFT:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/GirliesNFT.txt").Last();
+                    break;
+                case OfferType.JapaneseBornApeSociety:
+                    myOfferNumberString = File.ReadLines("K:/OpenSea_Bot_Files/JapaneseBornApeSociety.txt").Last();
+                    break;
                 default:
                     myOfferNumberString = "0";
                     break;
             }
             double myOfferNumber = double.Parse(myOfferNumberString);
-            double myMinSellNumber = myOfferNumber + feesPlusMyProfitNumber;
+            double percentage = myOfferNumber * feesPlusMyProfitNumber;
+            double myMinSellNumber = myOfferNumber + percentage;
             return myMinSellNumber;
         }
 
@@ -398,6 +513,7 @@ namespace OpenSeaBot.Methods
             {
                 webDriver.FindElement(MainPageElements.checkBoxReviewedCollection).Click();
             }
+            Thread.Sleep(3000);
         }
 
         public static void SwapWethForEthIfNeeded(WebDriver webDriver, string NftCollection, double myOfferNumber)
@@ -405,10 +521,10 @@ namespace OpenSeaBot.Methods
             if (MainPageElementsVariables.isNotEnoughWeth)
             {
                 webDriver.FindElement(MainPageElements.addWethButton).Click();
-                double wEthNumberToSwap = myOfferNumber + 0.005;
+                double wEthNumberToSwap = myOfferNumber + 0.0008;
                 string wEthNumberToSwapString = String.Format("{0:0.0000}", wEthNumberToSwap);
                 Thread.Sleep(3000);
-                var fieldForSwapingWeth = webDriver.FindElements(By.XPath("//input[@class='Input-sc-1e35ws5-0 leKAIy TokenInput__ValueInput-sc-8sl0d3-1 heITGp']"));
+                var fieldForSwapingWeth = webDriver.FindElements(By.CssSelector("input[class*='Input-sc']"));
                 fieldForSwapingWeth[0].Click();
                 fieldForSwapingWeth[0].SendKeys(Keys.Control + "a");
                 fieldForSwapingWeth[0].SendKeys(Keys.Backspace);
@@ -497,31 +613,9 @@ namespace OpenSeaBot.Methods
         }
 
 
-        public static void SaveFloorNumber(WebDriver webDriver)
-        {
-            var floorNumbersList = webDriver.FindElements(MainPageElements.floorPriceAllNfts);
-            MainPageElementsVariables.floorPrice = floorNumbersList[0].Text;
-            MainPageElementsVariables.floorNumber = double.Parse(MainPageElementsVariables.floorPrice);
+        
 
-        }
-
-        public static System.Timers.Timer Set(System.Action action, int interval)
-        {
-            var timer = new System.Timers.Timer(interval);
-            timer.Elapsed += (s, e) => {
-                timer.Enabled = false;
-                action();
-                timer.Enabled = true;
-            };
-            timer.Enabled = true;
-            return timer;
-        }
-
-        public static void Stop(System.Timers.Timer timer)
-        {
-            timer.Stop();
-            timer.Dispose();
-        }
+       
 
 
     }

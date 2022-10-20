@@ -6,13 +6,13 @@ namespace OpenSeaBot.Collections
 {
     internal static class MutantGrandpaCountryClub
     {
-       public static void MutantGrandpaCountryClubCollection(
-           WebDriver webDriver, 
-           By Nft, 
-           By NftToBeClicked, 
-           string NftCollection, 
-           double fees, 
-           double profit)
+        public static void MutantGrandpaCountryClubCollection(
+            WebDriver webDriver,
+            By Nft,
+            By NftToBeClicked,
+            string NftCollection,
+            double fees,
+            double profit)
         {
             MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
             MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
@@ -26,15 +26,13 @@ namespace OpenSeaBot.Collections
                 //ако не е пуснато за продажба, го пускаме за продажба 
                 if (MainPageElementsVariables.isSellButtonVisible)
                 {
-                    /*MainPageMethods.GoToCollection(webDriver, NftCollection);
-                    MainPageMethods.BuyFloorIfCheap(webDriver, NftCollection, fees, profit);*/
                     MainPageMethods.GoToCollection(webDriver, NftCollection);
                     /*MainPageMethods.ClickCollectionOfferButton(webDriver);
                     Thread.Sleep(3000);
                     MainPageMethods.IsCollectionUnreviewed(webDriver);
                     MainPageMethods.CheckBoxIfUnreviewedCollection(webDriver);*/
                     Thread.Sleep(3000);
-                    MainPageMethods.SaveFloorNumber(webDriver);
+                    MainPageMethods.SaveFloorNumber(webDriver, NftCollection);
                     var collectionType = new Offer.Offer { Type = Offer.OfferType.MutantGrandpaCountryClub };
 
                     MainPageMethods.CalculateMySellNumber(fees, profit, collectionType, webDriver);
@@ -49,15 +47,13 @@ namespace OpenSeaBot.Collections
                 else
                 {
                     // ако е пуснато за продажба
-                    /*MainPageMethods.GoToCollection(webDriver, NftCollection);
-                    MainPageMethods.BuyFloorIfCheap(webDriver, NftCollection, fees, profit);*/
                     MainPageMethods.GoToCollection(webDriver, NftCollection);
                     /*MainPageMethods.ClickCollectionOfferButton(webDriver);
                     Thread.Sleep(3000);
                     MainPageMethods.IsCollectionUnreviewed(webDriver);
                     MainPageMethods.CheckBoxIfUnreviewedCollection(webDriver);*/
                     Thread.Sleep(3000);
-                    MainPageMethods.SaveFloorNumber(webDriver);
+                    MainPageMethods.SaveFloorNumber(webDriver, NftCollection);
                     MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
                     MainPageMethods.GoIntoNft(webDriver, NftToBeClicked);
                     MainPageMethods.CalculatemySellNumberWhenAlreadyNftForSale(webDriver);
@@ -67,34 +63,50 @@ namespace OpenSeaBot.Collections
             }
             else
             {
-                //започваме да пускаме оферта, като първо проверяваме колко е числото на Best offer-а
-                MainPageMethods.GoToCollection(webDriver, NftCollection);
-                MainPageMethods.SaveFloorNumber(webDriver);
-                MainPageMethods.BuyFloorIfCheap(webDriver, NftCollection, fees, profit);
-                /*MainPageMethods.GoToCollection(webDriver, NftCollection);
-                MainPageMethods.SaveFloorNumber(webDriver);*/
-                MainPageMethods.SaveSevenDayAverageSellNumber(webDriver, profit);
-                MainPageMethods.ClickCollectionOfferButton(webDriver);
-                Thread.Sleep(4000);
-                MainPageMethods.SaveBestOfferNumber(webDriver);
-
-                if (MainPageElementsVariables.bestOfferNumber > MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
+                if (MainPageElementsCollections.isMutantGrandpaCountryClubProfitable == true)
                 {
-
-                    //проверявам дали Best offer-а е с поне 12.5% по - ниска от Floor price-а 
-                    if ((MainPageElementsVariables.bestOfferNumber / MainPageElementsVariables.floorNumber) * 100 < 87.5 &&
-                    MainPageElementsVariables.maxAvgPrice > MainPageElementsVariables.floorNumber)
+                    //започваме да пускаме оферта, като първо проверяваме колко е числото на Best offer-а
+                    MainPageMethods.GoToCollection(webDriver, NftCollection);
+                    MainPageMethods.SaveFloorNumber(webDriver, NftCollection);
+                    MainPageMethods.SaveSevenDayAverageSellNumber(webDriver, profit);
+                    MainPageMethods.ClickCollectionOfferButton(webDriver);
+                    MainPageMethods.IsCollectionUnreviewed(webDriver);
+                    MainPageMethods.CheckBoxIfUnreviewedCollection(webDriver);
+                    MainPageMethods.SaveBestOfferNumber(webDriver);
+                    if (MainPageElementsVariables.bestOfferNumber > MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
                     {
-                        //продължавам с пускането на офертата
-                        MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub = MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
-                        var offer = new Offer.Offer { Value = MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub, Type = Offer.OfferType.MutantGrandpaCountryClub };
+                        //проверявам дали Best offer-а е с поне 12.5% по - ниска от Floor price-а 
+                        if ((MainPageElementsVariables.bestOfferNumber / MainPageElementsVariables.floorNumber) * 100 < 87.5 &&
+                        MainPageElementsVariables.maxAvgPrice > MainPageElementsVariables.floorNumber)
+                        {
+                            //продължавам с пускането на офертата
+                            MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub = MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
+                            if (MainPageElementsVariables.isMyOfferOnProfit == true)
+                            {
+                                var offer = new Offer.Offer { Value = MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub, Type = Offer.OfferType.MutantGrandpaCountryClub };
+                                MainPageMethods.SaveMyOfferNumberInFile(offer);
+                                MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElementsVariables.myOfferNumberString);
+                                MainPageMethods.CheckIfWethIsEnough(webDriver);
+                                MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
+                                MainPageMethods.ClickMyOfferButton(webDriver);
+                                MainPageMethods.SignTransactionWithMetamask(webDriver);
+                            }
 
-                        MainPageMethods.SaveMyOfferNumberInFile(offer);
-                        MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElementsVariables.myOfferNumberString); //питай Боби
-                        MainPageMethods.CheckIfWethIsEnough(webDriver);
-                        MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, MainPageElementsCollections.initialValueOfferMutantGrandpaCountryClub);
-                        MainPageMethods.ClickMyOfferButton(webDriver);
-                        MainPageMethods.SignTransactionWithMetamask(webDriver);
+                        }
+                        else
+                        {
+                            MainPageElementsCollections.isMutantGrandpaCountryClubProfitable = false;
+                        }
+                    }
+
+                }
+                else
+                {
+                    MainPageElementsCollections.isMutantGrandpaCountryClubProfitableCounter++;
+                    if (MainPageElementsCollections.isMutantGrandpaCountryClubProfitableCounter >= 300)
+                    {
+                        MainPageElementsCollections.isMutantGrandpaCountryClubProfitable = true;
+                        MainPageElementsCollections.isMutantGrandpaCountryClubProfitableCounter = 0;
                     }
                 }
             }

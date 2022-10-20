@@ -16,7 +16,16 @@ namespace OpenSeaBot.Offer
     {
         VividLimited,
         TheLobstars,
-        MutantGrandpaCountryClub
+        MutantGrandpaCountryClub,
+        RubberDuckBathParty,
+        RetroArcadeCollection,
+        AntonymGENESIS,
+        AINightbirds,
+        ChildrenofUkiyo,
+        FlowerLolitaCollections,
+        TheMekabots,
+        GirliesNFT,
+        JapaneseBornApeSociety
     }
 
 

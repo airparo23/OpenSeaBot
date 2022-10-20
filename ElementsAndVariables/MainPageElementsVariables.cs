@@ -30,5 +30,6 @@ namespace OpenSeaBot.ElementsAndVariables
         public static double sevenDaysAveragePriceNumberPercentage;
         public static double maxAvgPrice;
         public static bool isCollectionApproved;
+        public static bool isMyOfferOnProfit;
     }
 }

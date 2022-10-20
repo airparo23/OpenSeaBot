@@ -14,8 +14,8 @@
           "NUnit": "3.13.3",
           "NUnit.Analyzers": "3.3.0",
           "NUnit3TestAdapter": "4.2.1",
-          "Selenium.WebDriver": "4.3.0",
-          "Selenium.WebDriver.ChromeDriver": "104.0.5112.7900",
+          "Selenium.WebDriver": "4.5.1",
+          "Selenium.WebDriver.ChromeDriver": "106.0.5249.6100",
           "coverlet.collector": "3.1.2"
         },
         "runtime": {
@@ -26,7 +26,7 @@
       "coverlet.collector/3.1.2": {},
       "DotNetSeleniumExtras.WaitHelpers/3.11.0": {
         "dependencies": {
-          "Selenium.WebDriver": "4.3.0"
+          "Selenium.WebDriver": "4.5.1"
         },
         "runtime": {
           "lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll": {
@@ -153,7 +153,7 @@
       "Microsoft.TestPlatform.TestHost/17.1.0": {
         "dependencies": {
           "Microsoft.TestPlatform.ObjectModel": "17.1.0",
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "lib/netcoreapp2.1/Microsoft.TestPlatform.CommunicationUtilities.dll": {
@@ -302,11 +302,11 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
-      "Newtonsoft.Json/12.0.3": {
+      "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.0.3.23909"
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
           }
         }
       },
@@ -331,9 +331,9 @@
       },
       "NUnit.Analyzers/3.3.0": {},
       "NUnit3TestAdapter/4.2.1": {},
-      "Selenium.WebDriver/4.3.0": {
+      "Selenium.WebDriver/4.5.1": {
         "dependencies": {
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "lib/net5.0/WebDriver.dll": {
@@ -342,7 +342,7 @@
           }
         }
       },
-      "Selenium.WebDriver.ChromeDriver/104.0.5112.7900": {},
+      "Selenium.WebDriver.ChromeDriver/106.0.5249.6100": {},
       "System.Reflection.Metadata/1.6.0": {}
     }
   },
@@ -415,12 +415,12 @@
       "path": "netstandard.library/2.0.0",
       "hashPath": "netstandard.library.2.0.0.nupkg.sha512"
     },
-    "Newtonsoft.Json/12.0.3": {
+    "Newtonsoft.Json/13.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
-      "path": "newtonsoft.json/12.0.3",
-      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     },
     "NuGet.Frameworks/5.11.0": {
       "type": "package",
@@ -450,19 +450,19 @@
       "path": "nunit3testadapter/4.2.1",
       "hashPath": "nunit3testadapter.4.2.1.nupkg.sha512"
     },
-    "Selenium.WebDriver/4.3.0": {
+    "Selenium.WebDriver/4.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-dDRbNrpzmII+ZnPLJF7ka2nygR/jnY0BfIl2rsyp1TJXQmr2ayv9tzq1ZBwqwRc1LkHC5zFAi1X3yboFWp0j+Q==",
-      "path": "selenium.webdriver/4.3.0",
-      "hashPath": "selenium.webdriver.4.3.0.nupkg.sha512"
+      "sha512": "sha512-ztu9Qv2n5/NkqPs0MQ3nojMJuW2PVHrAKDukmT77HbYAGhZI370Hp0EJNqyucJuud937Lr/qvXsoOtLZ18VFnw==",
+      "path": "selenium.webdriver/4.5.1",
+      "hashPath": "selenium.webdriver.4.5.1.nupkg.sha512"
     },
-    "Selenium.WebDriver.ChromeDriver/104.0.5112.7900": {
+    "Selenium.WebDriver.ChromeDriver/106.0.5249.6100": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vDH+7FqF4APZtvqyqtJ8XYTTh523EsUV88CpqW4d2xjxKjUp6ifpeLi9rDhnSuruDIoQDLJvRBZPI7UlcMTXOw==",
-      "path": "selenium.webdriver.chromedriver/104.0.5112.7900",
-      "hashPath": "selenium.webdriver.chromedriver.104.0.5112.7900.nupkg.sha512"
+      "sha512": "sha512-ZJA+xb9uLlxmrkPsWziPpoi3sVMzuvQ2pHDpCM/OtCV72u2iJZL/UP0eGGtjS9neOzTOjO7bdeUkur0hCipGHw==",
+      "path": "selenium.webdriver.chromedriver/106.0.5249.6100",
+      "hashPath": "selenium.webdriver.chromedriver.106.0.5249.6100.nupkg.sha512"
     },
     "System.Reflection.Metadata/1.6.0": {
       "type": "package",

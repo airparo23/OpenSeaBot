@@ -53,8 +53,8 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By lowerPriceButton = By.XPath("//button[text()='Lower price']");
         public static By inputFieldLowerPrice = By.XPath("//input[@id='newAmount']");
         public static By setNewPriceButton = By.XPath("//button[text()='Set new price']");
-        public static By isCollectionReviewed = By.XPath("//div[@class='sc-1xf18x6-0 sc-1aqfqq9-0 haVRLx dqAHVz CollectionDetailsModal--details-header']");
-        public static By checkBoxReviewedCollection = By.XPath("//input[@id='review-confirmation']");
+        public static By isCollectionReviewed = By.XPath("//label[contains(., 'I understand that OpenSea has not reviewed this collection and blockchain transactions are irreversible.')]");
+        public static By checkBoxReviewedCollection = By.XPath("//i[@title='Scroll down']");
         public static By offerPeriodDownArrow = By.CssSelector("div[style='width: 181px;']");
         public static By offerPeriodCustom = By.CssSelector(".tippy-content li:last-child");
         public static By activity = By.XPath("//span[text()='Activity']");
@@ -67,6 +67,7 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By addToCartButton = By.XPath("//button[text()='Add to cart']");
         public static By completePurchaseButton = By.XPath("//button[text()='Complete purchase']");
         public static By floorPriceAllNfts = By.CssSelector("div[class*='Price--amount']");
-        public static By approveCollection = By.XPath("//p[text()='Approve collection']");
+        public static By approveCollection = By.XPath("//div[text()='Go to your wallet']");
+        public static By floorPriceInNft = By.CssSelector("div[class*='Price--main TradeStation--price'] div[class*='Price--amount']");
     }
 }
