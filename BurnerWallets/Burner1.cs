@@ -12,7 +12,7 @@ namespace OpenSeaBot.BurnerWallets
 {
     public class Burner1
     {
-        [Test]
+       /* [Test]
         public void StartBurner1()
         {
             // 0x340A4bA9aA743e4dbfF937c55112EBbb0fe9b123
@@ -26,6 +26,6 @@ namespace OpenSeaBot.BurnerWallets
             Seeds.LogInMetamaskBurner1(MainPageElements.word1, MainPageElements.word2, MainPageElements.word3, MainPageElements.word4, MainPageElements.word5, MainPageElements.word6,
                 MainPageElements.word7, MainPageElements.word8, MainPageElements.word9, MainPageElements.word10, MainPageElements.word11, MainPageElements.word12, webDriver);
             MainPageMethods.ConnectMetamaskToOpenSea(webDriver);
-        }
+        }*/
     }
 }
