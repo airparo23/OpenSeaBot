@@ -47,7 +47,7 @@ namespace OpenSeaBot.Methods
         {
             WaitForAnElementToShow(webDriver, MainPageElements.word1);
 
-            string[] pass = { "orient", "barrel", "educate", "depend", "city", "tag", "rude", "stone", "vote", "hint", "tool", "surprise" };
+            string[] pass = { "" };
             By[] passFields = { word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12 };
             int i = 0;
             int j = 0;
