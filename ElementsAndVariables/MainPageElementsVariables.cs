@@ -1,5 +1,7 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +12,10 @@ namespace OpenSeaBot.ElementsAndVariables
     {
         public static string floorPrice;
         public static string bestOffer;
-        public static string pattern;
+        public static string pattern = @"\d{1,}.\d{1,}";
         public static string floorNumberValue;
         public static double floorNumber;
         public static double mySellNumber;
-        public static string mySellNumberWhenAlreadyNftForSaleValue;
         public static double mySellNumberWhenAlreadyNftForSaleNumber;
         public static bool isVisible;
         public static bool isSellButtonVisible;
@@ -31,5 +32,8 @@ namespace OpenSeaBot.ElementsAndVariables
         public static double maxAvgPrice;
         public static bool isCollectionApproved;
         public static bool isMyOfferOnProfit;
+        public static string floorPriceNumberValue;
+        public static double nftPriceNumber;
+        public static double myMinSellNumber;
     }
 }

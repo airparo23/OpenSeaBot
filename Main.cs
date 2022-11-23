@@ -41,23 +41,88 @@ namespace OpenSeaBot
 
             while (await timer.WaitForNextTickAsync())
             {
-                await Task.Delay(29000);
+                await Task.Delay(9000);
 
-                //floor price too high
-                /*try
+                try
                 {
-                    TheLobstars.TheLobstarsCollection(
-                    webDriver,
-                    MainPageElementsCollections.theLobstarsNFT,
-                    MainPageElementsCollections.theLobstarsNftToBeClicked,
-                    MainPageElementsCollections.theLobstarsCollection,
-                    7.5,
-                    5);
+                    ChainsNFT.ChainsNFTCollection(
+                        webDriver,
+MainPageElementsCollections.chainsNFTNFT,
+MainPageElementsCollections.chainsNFTToBeClicked,
+MainPageElementsCollections.chainsNFTCollection,
+10.5,
+5);
                 }
                 catch
                 {
                     System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.theLobstarsCollectionName, DateTime.Now));
-                }*/
+                }
+
+                try
+                {
+                    CultureCubsOfficial.CultureCubsOfficialCollection(
+                                webDriver,
+                                MainPageElementsCollections.cultureCubsOfficialNFT,
+                                MainPageElementsCollections.cultureCubsOfficialToBeClicked,
+                                MainPageElementsCollections.cultureCubsOfficialCollection,
+                                10,
+                                5);
+
+
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.antonymGENESISCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    LittleLemonFriends.LittleLemonFriendsCollection(
+       webDriver,
+       MainPageElementsCollections.littleLemonFriendsNFT,
+       MainPageElementsCollections.littleLemonFriendsToBeClicked,
+       MainPageElementsCollections.littleLemonFriendsCollection,
+       5,
+       5);
+
+
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.retroArcadeCollectionCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+
+                    RetroArcadeCollection.RetroArcadeCollectionCollection(
+webDriver,
+MainPageElementsCollections.retroArcadeCollectionNFT,
+MainPageElementsCollections.retroArcadeCollectionNftToBeClicked,
+MainPageElementsCollections.retroArcadeCollectionCollection,
+5.5,
+5);
+
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.vividLimitedCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    ChildrenofUkiyo.ChildrenofUkiyoCollection(
+     webDriver,
+     MainPageElementsCollections.childrenofUkiyoNFT,
+     MainPageElementsCollections.childrenofUkiyoToBeClicked,
+     MainPageElementsCollections.childrenofUkiyoCollection,
+     10,
+     5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.mutantGrandpaCountryClubCollectionName, DateTime.Now));
+                }
 
                 try
                 {
@@ -67,66 +132,6 @@ namespace OpenSeaBot
                         MainPageElementsCollections.theMekabotsToBeClicked,
                         MainPageElementsCollections.theMekabotsCollection,
                         7.5,
-                        5);
-            }
-                catch
-            {
-                System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.theMekabotsCollectionName, DateTime.Now));
-            }
-
-            try
-                {
-                    RetroArcadeCollection.RetroArcadeCollectionCollection(
-                        webDriver,
-                        MainPageElementsCollections.retroArcadeCollectionNFT,
-                        MainPageElementsCollections.retroArcadeCollectionNftToBeClicked,
-                        MainPageElementsCollections.retroArcadeCollectionCollection,
-                        5.5,
-                        5);
-                }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.retroArcadeCollectionCollectionName, DateTime.Now));                   
-                }
-
-                try
-                {
-                    VividLimited.VividLimitedCollection(
-                    webDriver,
-                    MainPageElementsCollections.vividLimitedNFT,
-                    MainPageElementsCollections.vividLimitedNftToBeClicked,
-                    MainPageElementsCollections.vividLimitedCollection,
-                    7.5,
-                    5);
-                }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.vividLimitedCollectionName, DateTime.Now));
-                }
-
-                try
-                {
-                    MutantGrandpaCountryClub.MutantGrandpaCountryClubCollection(
-                        webDriver,
-                        MainPageElementsCollections.mutantGrandpaCountryClubNFT,
-                        MainPageElementsCollections.mutantGrandpaCountryClubNftToBeClicked,
-                        MainPageElementsCollections.mutantGrandpaCountryClubCollection,
-                        7.5,
-                        5);
-                }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.mutantGrandpaCountryClubCollectionName, DateTime.Now));
-                }
-
-                try
-                {
-                    RubberDuckBathParty.RubberDuckBathPartyCollection(
-                        webDriver,
-                        MainPageElementsCollections.rubberDuckBathPartyNFT,
-                        MainPageElementsCollections.rubberDuckBathPartyNftToBeClicked,
-                        MainPageElementsCollections.rubberDuckBathPartyCollection,
-                        8.5,
                         5);
                 }
                 catch
@@ -152,12 +157,12 @@ namespace OpenSeaBot
                 try
                 {
                     AINightbirds.AINightbirdsCollection(
-                        webDriver,
-                        MainPageElementsCollections.AINightbirdsNFT,
-                        MainPageElementsCollections.AINightbirdsftToBeClicked,
-                        MainPageElementsCollections.AINightbirdsCollection,
-                        7.5,
-                        5);
+              webDriver,
+              MainPageElementsCollections.AINightbirdsNFT,
+              MainPageElementsCollections.AINightbirdsftToBeClicked,
+              MainPageElementsCollections.AINightbirdsCollection,
+              7.5,
+              5);
                 }
                 catch
                 {
@@ -166,13 +171,13 @@ namespace OpenSeaBot
 
                 try
                 {
-                    ChildrenofUkiyo.ChildrenofUkiyoCollection(
-                        webDriver,
-                        MainPageElementsCollections.childrenofUkiyoNFT,
-                        MainPageElementsCollections.childrenofUkiyoToBeClicked,
-                        MainPageElementsCollections.childrenofUkiyoCollection,
-                        10,
-                        5);
+                    MutantGrandpaCountryClub.MutantGrandpaCountryClubCollection(
+webDriver,
+MainPageElementsCollections.mutantGrandpaCountryClubNFT,
+MainPageElementsCollections.mutantGrandpaCountryClubNftToBeClicked,
+MainPageElementsCollections.mutantGrandpaCountryClubCollection,
+7.5,
+5);
                 }
                 catch
                 {
@@ -181,20 +186,20 @@ namespace OpenSeaBot
 
                 try
                 {
-                    FlowerLolitaCollections.FlowerLolitaCollectionsCollection(
-                        webDriver,
-                        MainPageElementsCollections.flowerLolitaCollectionsNFT,
-                        MainPageElementsCollections.flowerLolitaCollectionsToBeClicked,
-                        MainPageElementsCollections.flowerLolitaCollectionsCollection,
-                        10,
-                        5);
+                    ILikeYouYoureWeird.ILikeYouYoureWeirdCollection(
+webDriver,
+MainPageElementsCollections.iLikeYouYoureWeirdNFT,
+MainPageElementsCollections.iLikeYouYoureWeirdToBeClicked,
+MainPageElementsCollections.iLikeYouYoureWeirdCollection,
+8.5,
+5);
                 }
                 catch
                 {
                     System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.flowerLolitaCollectionsCollectionName, DateTime.Now));
                 }
 
-                
+
 
                 try
                 {
@@ -212,7 +217,7 @@ namespace OpenSeaBot
                 }
 
                 //floor price too high
-                /*try 
+                /*try
                 {
                     JapaneseBornApeSociety.JapaneseBornApeSocietyCollection(
                         webDriver,
@@ -227,7 +232,141 @@ namespace OpenSeaBot
                     System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.japaneseBornApeSocietyCollectionName, DateTime.Now));
                 }*/
 
+                try
+                {
+                    WulfBoySocialClub.WulfBoySocialClubCollection(
+                        webDriver,
+                        MainPageElementsCollections.wulfBoySocialClubNFT,
+                        MainPageElementsCollections.wulfBoySocialClubToBeClicked,
+                        MainPageElementsCollections.wulfBoySocialClubCollection,
+                        9.5,
+                        5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.chainsNFTCollectionName, DateTime.Now));
+                }
 
+                try
+                {
+                    TheWhitelistioAces.TheWhitelistioAcesCollection(
+                        webDriver,
+                        MainPageElementsCollections.theWhitelistioAcesNFT,
+                        MainPageElementsCollections.theWhitelistioAcesToBeClicked,
+                        MainPageElementsCollections.theWhitelistioAcesCollection,
+                        9.5,
+                        5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.theWhitelistioAcesCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    KarafuruxHYPEBEASTxatmos.KarafuruxHYPEBEASTxatmosCollection(
+                        webDriver,
+                        MainPageElementsCollections.karafuruxHYPEBEASTxatmosNFT,
+                        MainPageElementsCollections.karafuruxHYPEBEASTxatmosToBeClicked,
+                        MainPageElementsCollections.karafuruxHYPEBEASTxatmosCollection,
+                        8,
+                        5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.karafuruxHYPEBEASTxatmosCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    CreepzReptileArmoury.CreepzReptileArmouryCollection(
+                        webDriver,
+                        MainPageElementsCollections.creepzReptileArmouryNFT,
+                        MainPageElementsCollections.creepzReptileArmouryToBeClicked,
+                        MainPageElementsCollections.creepzReptileArmouryCollection,
+                        10,
+                        5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.creepzReptileArmouryCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    TheLobstars.TheLobstarsCollection(
+                webDriver,
+                MainPageElementsCollections.theLobstarsNFT,
+                MainPageElementsCollections.theLobstarsNftToBeClicked,
+                MainPageElementsCollections.theLobstarsCollection,
+                9.5,
+                5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.cultureCubsOfficialCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    VividLimited.VividLimitedCollection(
+                    webDriver,
+                    MainPageElementsCollections.vividLimitedNFT,
+                    MainPageElementsCollections.vividLimitedNftToBeClicked,
+                    MainPageElementsCollections.vividLimitedCollection,
+                    7.5,
+                    5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.iLikeYouYoureWeirdCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    FlowerLolitaCollections.FlowerLolitaCollectionsCollection(
+       webDriver,
+       MainPageElementsCollections.flowerLolitaCollectionsNFT,
+       MainPageElementsCollections.flowerLolitaCollectionsToBeClicked,
+       MainPageElementsCollections.flowerLolitaCollectionsCollection,
+       10,
+       5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.wulfBoySocialClubCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+                    RubberDuckBathParty.RubberDuckBathPartyCollection(
+webDriver,
+MainPageElementsCollections.rubberDuckBathPartyNFT,
+MainPageElementsCollections.rubberDuckBathPartyNftToBeClicked,
+MainPageElementsCollections.rubberDuckBathPartyCollection,
+8.5,
+5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.thePsychonautApeDivisionCollectionName, DateTime.Now));
+                }
+
+                try
+                {
+
+                    ThePsychonautApeDivision.ThePsychonautApeDivisionCollection(
+webDriver,
+MainPageElementsCollections.thePsychonautApeDivisionNFT,
+MainPageElementsCollections.thePsychonautApeDivisionToBeClicked,
+MainPageElementsCollections.thePsychonautApeDivisionCollection,
+12.5,
+5);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Нещо се счупи в {0} в {1}!", MainPageElementsCollections.littleLemonFriendsCollectionName, DateTime.Now));
+                }
 
 
             }

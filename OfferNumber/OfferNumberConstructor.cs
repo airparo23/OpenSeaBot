@@ -25,7 +25,16 @@ namespace OpenSeaBot.Offer
         FlowerLolitaCollections,
         TheMekabots,
         GirliesNFT,
-        JapaneseBornApeSociety
+        JapaneseBornApeSociety,
+        ChainsNFT,
+        TheWhitelistioAces,
+        KarafuruxHYPEBEASTxatmos,
+        CreepzReptileArmoury,
+        CultureCubsOfficial,
+        ILikeYouYoureWeird,
+        WulfBoySocialClub,
+        ThePsychonautApeDivision,
+        LittleLemonFriends
     }
 
 

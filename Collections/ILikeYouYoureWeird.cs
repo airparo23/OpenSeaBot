@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace OpenSeaBot.Collections
 {
-    internal static class ChildrenofUkiyo
+    internal static class ILikeYouYoureWeird
     {
-        public static void ChildrenofUkiyoCollection(
+        public static void ILikeYouYoureWeirdCollection(
            WebDriver webDriver,
            By Nft,
            By NftToBeClicked,
@@ -21,6 +21,7 @@ namespace OpenSeaBot.Collections
         {
             MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
             MainPageMethods.IsNftBought(webDriver, Nft);
+
             //ако имаме NFT, влизаме в него и проверяваме дали вече е пуснато за продажба или не
             if (MainPageElementsVariables.isVisible)
             {
@@ -30,10 +31,11 @@ namespace OpenSeaBot.Collections
                 //ако не е пуснато за продажба, го пускаме за продажба 
                 if (MainPageElementsVariables.isSellButtonVisible)
                 {
+                    // ако не е пуснато за продажба
                     MainPageMethods.GoToCollection(webDriver, NftCollection);
                     Thread.Sleep(2000);
                     MainPageMethods.SaveFloorNumber(webDriver);
-                    var collectionType = new Offer.Offer { Type = Offer.OfferType.ChildrenofUkiyo };
+                    var collectionType = new Offer.Offer { Type = Offer.OfferType.ILikeYouYoureWeird };
 
                     MainPageMethods.CalculateMySellNumber(fees, profit, collectionType, webDriver);
                     MainPageMethods.GoToCollection(webDriver, MainPageElements.myAccountUrl);
@@ -48,7 +50,7 @@ namespace OpenSeaBot.Collections
                     MainPageMethods.GoToCollection(webDriver, NftCollection);
                     Thread.Sleep(2000);
                     MainPageMethods.SaveFloorNumber(webDriver);
-                    var collectionType = new Offer.Offer { Type = Offer.OfferType.ChildrenofUkiyo };
+                    var collectionType = new Offer.Offer { Type = Offer.OfferType.ILikeYouYoureWeird };
                     MainPageMethods.SetLowerPriceForSaleIfNeeded(webDriver, fees, profit, collectionType, NftToBeClicked);
                 }
                 // от тук трябва да отидем в профил и да търсим следващото НФТ дали го имаме
@@ -63,20 +65,20 @@ namespace OpenSeaBot.Collections
                 MainPageMethods.IsCollectionUnreviewed(webDriver);
                 MainPageMethods.CheckBoxIfUnreviewedCollection(webDriver);
                 MainPageMethods.SaveBestOfferNumber(webDriver);
-                if (MainPageElementsVariables.bestOfferNumber != MainPageElementsCollections.initialValuechildrenofUkiyo) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
+                if (MainPageElementsVariables.bestOfferNumber != MainPageElementsCollections.initialValueiLikeYouYoureWeird) // проверяваме дали best offer-а е по голям от моят последен best offer и ако е - продължавам
                 {
                     //проверявам дали Best offer-а е с поне 12.5% по - ниска от Floor price-а 
                     if ((MainPageElementsVariables.bestOfferNumber / MainPageElementsVariables.floorNumber) * 100 < 100 - (fees + profit))
                     {
                         //продължавам с пускането на офертата
-                        MainPageElementsCollections.initialValuechildrenofUkiyo = MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, MainPageElementsCollections.initialValuechildrenofUkiyo);
+                        MainPageElementsCollections.initialValueiLikeYouYoureWeird = MainPageMethods.CalculateMyOfferNumber(fees, profit + 2, MainPageElementsCollections.initialValueiLikeYouYoureWeird);
                         if (MainPageElementsVariables.isMyOfferOnProfit == true)
                         {
-                            var offer = new Offer.Offer { Value = MainPageElementsCollections.initialValuechildrenofUkiyo, Type = Offer.OfferType.ChildrenofUkiyo };
+                            var offer = new Offer.Offer { Value = MainPageElementsCollections.initialValueiLikeYouYoureWeird, Type = Offer.OfferType.ILikeYouYoureWeird };
                             MainPageMethods.SaveMyOfferNumberInFile(offer);
                             MainPageMethods.TypeMyOfferNumber(webDriver, MainPageElementsVariables.myOfferNumberString);
                             MainPageMethods.IsWethEnough(webDriver);
-                            MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, MainPageElementsCollections.initialValuechildrenofUkiyo);
+                            MainPageMethods.SwapWethForEthIfNeeded(webDriver, NftCollection, MainPageElementsCollections.initialValueiLikeYouYoureWeird);
                             MainPageMethods.ClickMyOfferButton(webDriver);
                             MainPageMethods.SignTransactionWithMetamask(webDriver);
                         }

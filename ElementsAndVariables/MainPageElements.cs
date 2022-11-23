@@ -48,14 +48,14 @@ namespace OpenSeaBot.ElementsAndVariables
         public static By completeListingButton = By.XPath("//button[text()='Complete listing']");
         public static By notEnoughWethMessage = By.CssSelector("div[aria-modal=true] span[role=status]");
         public static By addWethButton = By.XPath("//button[text()='Add WETH']");
-        public static By wrapEthButton = By.XPath("//div[@class='type__TextWrapper-sc-16386l-0 type__TransitionTextWrapper-sc-16386l-1 iLOGtN krBtbX button button-large css-oldlf1']");
+        public static By wrapEthButton = By.XPath("//div[text()='Wrap ETH']");
         public static By confirmButtonMetamask = By.XPath("//button[@class='button btn--rounded btn-primary page-container__footer-button']");
         public static By lowerPriceButton = By.XPath("//button[text()='Lower price']");
         public static By inputFieldLowerPrice = By.XPath("//input[@id='newAmount']");
         public static By setNewPriceButton = By.XPath("//button[text()='Set new price']");
         public static By isCollectionReviewed = By.XPath("//label[contains(., 'I understand that OpenSea has not reviewed this collection and blockchain transactions are irreversible.')]");
-        public static By checkBoxReviewedCollection = By.XPath("//i[@title='Scroll down']");
-        public static By offerPeriodDownArrow = By.CssSelector("div[style='width: 181px;']");
+        public static By checkBoxReviewedCollection = By.CssSelector("span[type='checkbox'] input[id='review-confirmation']");
+        public static By offerPeriodDownArrow = By.CssSelector("div[style='width: 162px;']");
         public static By offerPeriodCustom = By.CssSelector(".tippy-content li:last-child");
         public static By activity = By.XPath("//span[text()='Activity']");
         public static By lastSevenDaysPeriod = By.CssSelector("div[data-tippy-root] li:first-of-type button");
@@ -66,8 +66,17 @@ namespace OpenSeaBot.ElementsAndVariables
         public static string floorNftsLocator = $"//div[text()='{{0}}']";
         public static By addToCartButton = By.XPath("//button[text()='Add to cart']");
         public static By completePurchaseButton = By.XPath("//button[text()='Complete purchase']");
-        public static By floorPriceAllNfts = By.CssSelector("div[class*='Price--amount']");
-        public static By approveCollection = By.XPath("//div[text()='Go to your wallet']");
+        public static By floorPriceAllNfts = By.CssSelector("div[class*='Price--main']:not([color])>div");
         public static By floorPriceInNft = By.CssSelector("div[class*='Price--main TradeStation--price'] div[class*='Price--amount']");
+        public static By approveCollectionElement = By.XPath("//h4[text()='Approve collection']");
+        public static By goToCollectionFromNft = By.CssSelector("a[class*='Collection']");
+        public static By nftPriceString = By.CssSelector("div[class='TradeStation--price-container'] div[class*='Price--amount']");
+        public static By oneMonthButton = By.XPath("//div[contains(text(), '1 month')]");
+        public static By oneMonthDateRangeMenu = By.CssSelector("i[value='keyboard_arrow_down'], [aria-label='Show more']");
+        public static By oneMonthDateRangeButton = By.CssSelector("li:first-of-type>button");
+        public static By floorPrice = By.CssSelector("a[data-testid='collection-stats-floor-price']>div>span>div");
+        public static By bestOfferPrice = By.CssSelector("a[data-testid='collection-stats-best-offer']>div>span>div");
+       
+
     }
 }
